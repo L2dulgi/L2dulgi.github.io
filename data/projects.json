@@ -1,0 +1,64 @@
+{
+  "projects": [
+    {
+      "title": "Artificial Intelligence on the Edge with Robotics (AIER)",
+      "institution": "Carnegie Mellon University",
+      "department": "Software and Societal Systems Department",
+      "role": "Project Manager",
+      "startDate": "2024.10",
+      "endDate": "2025.02",
+      "status": "ongoing",
+      "description": "Project Manager for the design and development of a conversational robot cannon on embedded devices.",
+      "technologies": ["Edge Computing", "Robotics", "Conversational AI", "Embedded Systems"],
+      "category": "Robotics & AI"
+    },
+    {
+      "title": "Policy Generalization via Multi-modal Skill Transfer",
+      "institution": "Sungkyunkwan University",
+      "lab": "CSI Agent Lab",
+      "role": "Researcher",
+      "startDate": "2023.06",
+      "endDate": "present",
+      "status": "ongoing",
+      "description": "Developing a continual learning algorithm for skill-based agents, focusing on bidirectional knowledge transfer and multi-modal skill adaptation.",
+      "technologies": ["Continual Learning", "Skill Transfer", "Multi-modal Learning", "Reinforcement Learning"],
+      "category": "Machine Learning"
+    },
+    {
+      "title": "Self-directed Multimodal Intelligence for Solving Unknown, Open-Domain Problems",
+      "institution": "Sungkyunkwan University",
+      "lab": "CSI Agent Lab",
+      "role": "Researcher",
+      "startDate": "2023.05",
+      "endDate": "present",
+      "status": "ongoing",
+      "description": "Conducting research on continual imitation learning with unlearning. Developing a diffusion-based policy architecture for few-shot imitation learning.",
+      "technologies": ["Imitation Learning", "Diffusion Models", "Few-shot Learning", "Unlearning"],
+      "category": "Machine Learning"
+    },
+    {
+      "title": "Adaptive Personality for Intelligent Agents",
+      "institution": "Sungkyunkwan University",
+      "lab": "CSI Agent Lab",
+      "role": "Researcher",
+      "startDate": "2022.05",
+      "endDate": "2024.03",
+      "status": "completed",
+      "description": "Developing a multimodal semantic skill learning framework for a one-shot imitation learning algorithm in non-stationary environments.",
+      "technologies": ["One-shot Learning", "Multimodal Learning", "Non-stationary Environments", "Semantic Learning"],
+      "category": "Machine Learning"
+    },
+    {
+      "title": "Federated Reinforcement Learning for Fast Adaptation",
+      "institution": "Sungkyunkwan University",
+      "lab": "CSI Agent Lab",
+      "role": "Researcher",
+      "startDate": "2021.07",
+      "endDate": "2022.12",
+      "status": "completed",
+      "description": "Developing a federated reinforcement learning framework and learning scenarios. Focusing on multi-task reinforcement learning and meta-learning algorithms for task adaptation.",
+      "technologies": ["Federated Learning", "Reinforcement Learning", "Meta-Learning", "Multi-task Learning"],
+      "category": "Machine Learning"
+    }
+  ]
+}

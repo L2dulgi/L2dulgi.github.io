@@ -1,0 +1,297 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% "ModernCV" CV and Cover Letter
+% LaTeX Template
+% Version 1.1 (9/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Xavier Danaux (xdanaux@gmail.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Important note:
+% This template requires the moderncv.cls and .sty files to be in the same 
+% directory as this .tex file. These files provide the resume style and themes 
+% used for structuring the document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt,a4paper,sans]{moderncv} % Font sizes: 10, 11, or 12; paper sizes: a4paper, letterpaper, a5paper, legalpaper, executivepaper or landscape; font families: sans or roman
+\usepackage{standalone}
+\moderncvstyle{classic} % CV theme - options include: 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue} % CV color - options include: 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage[scale=0.85]{geometry} % Reduce document margins
+%\setlength{\hintscolumnwidth}{3cm} % Uncomment to change the width of the dates column
+%\setlength{\makecvtitlenamewidth}{10cm} % For the 'classic' style, uncomment to adjust the width of the space allocated to your name
+
+%\usepackage[utf8]{inputenc}
+
+%\usepackage{booktabs}
+\usepackage{fontawesome}
+\usepackage{marvosym} % For cool symbols.
+%\usepackage{hyperref}
+
+
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CONTACT INFORMATION SECTION
+%----------------------------------------------------------------------------------------
+
+\firstname{Daehee} % Your first name
+\familyname{Lee} % Your last name
+
+% All information in this block is optional, comment out any lines you don't need
+\title{Curriculum Vitae}
+\address{Ph.D. Student @ Sungkyunkwan University}{}
+\mobile{(+82) 1041675763}
+
+
+%\fax{(000) 111 1113}
+ 
+%\social{github}{stefano-bragaglia}
+\email{dulgi7245@skku.edu} 
+
+
+\homepage{https://scholar.google.com/citations?user=llB3SucAAAAJ}{Google Scholar}
+
+% social link \faGithub, \faSkype, \faLinkedin,\faStackExchange, and \faStackOverflo
+   
+\extrainfo{
+    \faLinkedin\href{https://www.linkedin.com/in/%EB%8C%80%ED%9D%AC-%EC%9D%B4-10b396246}{ Linkedin} \quad
+}
+
+
+%\social[linkedin][www.linkedin.com]{name}
+% The first argument is %the url for the clickable link, the second argument is the url displayed in the %template - this allows special characters to be displayed such as the tilde in this %example
+
+\photo[70pt][0.3pt]{picture} % The first bracket is the picture height, the second is %the thickness of the frame around the picture (0pt for no frame)
+%\quote{Not Attention, Patience is all we need.}
+
+%----------------------------------------------------------------------------------------
+
+\newcommand{\cvdoublecolumn}[2]{%
+  \cvitem[.75em]{}{%
+    \begin{minipage}[t]{\listdoubleitemcolumnwidth}#1\end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+    }%
+}
+
+
+
+\usepackage{multibbl}
+\newcommand\Colorhref[3][orange]{\href{#2}{\small\color{#1}#3}}
+
+
+% \newcommand{\cvreference}[7]{%
+%     \textbf{#1}\newline% Name
+%     \ifthenelse{\equal{#2}{}}{}{\addresssymbol~#2\newline}%
+%     \ifthenelse{\equal{#3}{}}{}{#3\newline}%
+%     \ifthenelse{\equal{#4}{}}{}{#4\newline}%
+%     \ifthenelse{\equal{#5}{}}{}{#5\newline}%
+%     \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{#6}\newline}%
+%     \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7}}
+
+\begin{document}
+
+\makecvtitle % Print the CV title
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Education}
+
+
+\cventry{2022.09 -- present}{MS-PhD Combined, Computer Science and Engineering}{SungKyunKwan University}{Suwon, South Korea}{}{Lifelong Learning Agent, Reinforcement Learning, Embodied Agent}
+
+\cventry{2024.09 -- 2025.02}{Visiting Scholar, Computer Science}{Carnegie Mellon University}{Pittsburgh, PA, USA}{} {Deep Learning, Large Scale Multimedia Analysis, Natural Language Processing}
+
+\cventry{2019.02 -- 2022.08}{Bachelor of Engineering, Computer Science and Engineering}{SungKyunKwan University}{Suwon, South Korea}{} {}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATION SECTION
+%----------------------------------------------------------------------------------------
+
+
+\section{Publications}
+% \subsection{Journal Article(Accepted)}
+% \cventry{2019}{\textbf{Pratik Dutta}, Sriparna Saha, Sanket Pai and Aviral Kumar}{}{Protein-protein Interaction based Generative Model for Improving Gene Clustering}{In \textit{\textbf{Scientific Reports-Nature}} (\textbf{Impact Factor: 4.12)}}{}
+
+
+\subsection{In Conference Proceedings}
+\newbibliography{conference}
+\nocite{conference}{*}
+\bibliographystyle{conference}{plainyrrev}
+\bibliography{conference}{conference}
+{\large \textsc{Refereed Conference Publications}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Project Experience}
+
+\subsection{Carnegie Mellon University, Software and Societal Systems Department}
+\cventry{2024.10 -- 2025.02}{\textit{Artificial Intelligence on the Edge with
+Robotics (AIER)}}{}{}{} {Project Manager for the design and development of a conversational robot cannon on embedded devices.}
+
+\subsection{SungKyunKwan University, CSI Agent Lab}
+
+\cventry{2023.06 -- present}{\textit{Policy Generalization via Multi-modal Skill Transfer}}{}{}{} { Developing a continual learning algorithm for skill-based agents, focusing on bidirectional knowledge transfer and multi-modal skill adaptation. }
+
+\cventry{2023.05 -- present}{\textit{Self-directed Multimodal Intelligence for Solving Unknown, Open-Domain Problems}}{}{}{} { Conducting research on continual imitation learning with unlearning. Developing a diffusion-based policy architecture for few-shot imitation learning. }
+
+\cventry{2022.05 -- 2024.03}{\textit{Adaptive Personality for Intelligent Agents}}{}{}{}{Developing a multimodal semantic skill learning framework for a one-shot imitation learning algorithm in non-stationary environments.}
+
+\cventry{2021.07 -- 2022.12}{\textit{Federated Reinforcement Learning for Fast Adaptation}}{}{}{} { Developing a federated reinforcement learning framework and learning scenarios. Focusing on multi-task reinforcement learning and meta-learning algorithms for task adaptation. }
+\cvitem{Advisor :}{\textbf{Dr. Honguk Woo}, \textit{Associate Professor, Department of Computer Science \& Engineering}, SunKyunKwan University ({\Colorhref{https://scholar.google.com/citations?user=Gaxjc7UAAAAJ&hl=en&oi=sra} {\textit{Google Scholar}}})}
+
+% \cventry{July,2018 -- present}{\textit{Developing Deep Multi-modal Architecture for Biomedical Problems}}{}{}{}
+% {Analyzing different modalities of genes like gene expression profiles, protein 3D structure, underlying amino acid sequence using popular deep learning models to obtain deeper insight into the underlying biological system. 
+% }
+% \cvitem{Advisor :}{\textbf{Dr. abc xyz}, \textit{Associate Professor, Department of Computer Science \& Engineering}, IIT abc ({\Colorhref{https://www.personal_webpage.com/} {\textit{Personal Web-page}}})}
+
+
+
+
+% \subsection{Indian Institute of Technology, XYZ}
+% \cventry{January,2015 -- Dec,2015}{\textit{Design and Synthesis of Reversible Multi-dimentional Nearest-Neighbour(NN) Quantum Circuit}}{}{}{}{Proposed an approach for designing and physically implementing of the multi-dimensional quantum circuits maintaining nearest-neighbor complacency that use minimal number of SWAP gates.}
+% \cvitem{Advisor :}{\textbf{Dr. abc xyz}, \textit{Associate Professor, Department of Computer Science \& Engineering}, IIT abc ({\Colorhref{https://www.personal_webpage.com/} {\textit{Personal Web-page}}})}
+
+
+% \cventry{2012 -- 2013}{\textit{Text Document Clustering with Semantic Similarity through Wordnet}}{}{}{}{Improvement of the text document clustering task over conventional methods by introducing WORDNET and some better clustering algorithms.}
+% \cvitem{Advisor :}{\textbf{Dr. abc xyz}, \textit{Associate Professor, Department of Computer Science \& Engineering}, IIT abc ({\Colorhref{https://www.personal_webpage.com/} {\textit{Personal Web-page}}})}
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	Fellowships \& Awards
+%----------------------------------------------------------------------------------------
+
+\section{Grants \& Fellowships}
+\cvitem{2022.09 -- 2026.02}{\textit{\textbf{Graduate Student Excellence Scholarship}} Full Tuition Scholarship for Academic Excellence, SungKyunKwan University}
+\cvitem{2019.02 -- 2022.08}{\textit{\textbf{Sungkyun Software Scholarship \& Recommendation Scholarship \& Student Success Scholarship}} Full Tuition Scholarship for Academic Excellence, SungKyunKwan University}
+% \cvitem{2019}{Receipt of \textit{\textbf{Visvesvaraya Travel Grant}} to attend a international conference \textbf{\textit{IEEE Congress on Evolutionary Computation, 2019}} in Wellington, New Zealand.}
+% \cvitem{2018}{Recipient of \textit{\textbf{SciGenome Research Foundation (SGRF) GYAN Scholarship}} to participate \textbf{\textit{Nextgen Genomics, Biology, Bioinformatics and Technologies-2018}} meeting at Jaipur India from $30^{th}$ September to $2^{nd}$ October 2018. }
+% \cvitem{2015}{Awarded under \textit{\textbf{Students Reward Programme}} at the Annual General Meeting of \textbf{Global Alumni Association of Bengal Engineering and Science University(GAABESU).}}
+
+
+%----------------------------------------------------------------------------------------
+%	Academic achievements
+%----------------------------------------------------------------------------------------
+
+% \section{Academic Achievements \& Recognitions }
+
+
+% \cvitem{2018}{\textbf{Session Chair of the session "Prediction"} in \textbf{$25^{th}$ \textit{International Conference of Neural Information Processing} (ICONIP 2018)}, Siem Reap, Cambodia.}
+
+
+% \cvitem{2018}{Invited to conduct lab sessions in \textit{\textbf{"Training Program on Machine Learning For Ocean Acoustics and Climate Data Analysis"}}, during 22-36 October 2018 at \textbf{Defence R\&D Organization- Naval Physical \& Oceanographic Laboratory (DRDO-NPOL), Kochi, Kerala}.}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	COMPUTER SKILLS SECTION
+%----------------------------------------------------------------------------------------
+
+% \section{Computer skills}
+
+% \cvitem{Programming Languages}{Python, PyTorch, keras, R, C, C++, Advanced JAVA}
+% \cvitem{Web Technologies}{HTML 5, PHP, JSP, Javascript}
+% \cvitem{Database}{SQL, MySQL, Apache, Neo4j}
+
+
+%----------------------------------------------------------------------------------------
+%	Position of Responsibility SECTION
+%----------------------------------------------------------------------------------------
+
+% \section{Position of Responsibility}
+% \cventry{2016-2020}{Executive member of IEEE Student Branch}{}{IIT ABC}{}{}
+% \cventry{April 1-5, 2019}{Organizer, GIAN Workshop on subjects}{}{IIT ABC}{}{}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	Teaching Assistantship SECTION
+%----------------------------------------------------------------------------------------
+
+% \section{Teaching Assistantship}
+% \cventry{Fall, 2019 :}{CS564: Foundations of Machine Learning}{}{IIT ABC}{}{}
+% \cventry{Spring, 2019 :}{CS342: Operating System Lab}{}{IIT ABC}{}{}
+% \cventry{Fall, 2018 :}{CS564: Foundations of Machine Learning}{}{IIT ABC}{}{}
+
+
+
+% \section{Referees}
+% \begin{tabular}{lr}
+% % Referee 1
+% \begin{minipage}[t]{3in}
+% \textbf{Dr. XXXXX XXXXX}\\
+% \textit{Associate Professor, Department of} \\
+% \textit{Computer Science \& Engineering}\\
+% Institute name\\
+% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
+% \end{minipage}
+% &
+% % Referee 2
+% \begin{minipage}[t]{3in}
+% \textbf{Dr. XXXXX XXXXX}\\
+% \textit{Associate Professor, Department of} \\
+% \textit{Computer Science \& Engineering}\\
+% Institute name\\
+% \Telefon\ +(601) 877-6236\\
+% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
+% \end{minipage}
+% \\
+% \\ % Additional newline for spacing.
+% % Referee 3
+% \begin{minipage}[t]{3in}
+% \textbf{Dr. XXXXX XXXXX}\\
+% \textit{Associate Professor, Department of} \\
+% \textit{Computer Science \& Engineering}\\
+% Institute name\\
+% \Telefon\ +(601) 877-6236\\
+% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
+% \end{minipage}
+% &
+\\
+\end{tabular}
+
+
+\end{document}

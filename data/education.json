@@ -1,0 +1,41 @@
+{
+  "degrees": [
+    {
+      "degree": "MS-PhD Combined",
+      "field": "Computer Science and Engineering",
+      "institution": "Sungkyunkwan University",
+      "location": "Suwon, South Korea",
+      "startDate": "2022.09",
+      "endDate": "present",
+      "status": "ongoing",
+      "focus": ["Lifelong Learning Agent", "Reinforcement Learning", "Embodied Agent"],
+      "advisor": {
+        "name": "Dr. Honguk Woo",
+        "title": "Associate Professor",
+        "department": "Department of Computer Science & Engineering",
+        "googleScholar": "https://scholar.google.com/citations?user=Gaxjc7UAAAAJ&hl=en&oi=sra"
+      }
+    },
+    {
+      "degree": "Visiting Scholar",
+      "field": "Computer Science",
+      "institution": "Carnegie Mellon University",
+      "location": "Pittsburgh, PA, USA",
+      "startDate": "2024.09",
+      "endDate": "2025.02",
+      "status": "ongoing",
+      "focus": ["Deep Learning", "Large Scale Multimedia Analysis", "Natural Language Processing"],
+      "department": "Software and Societal Systems Department"
+    },
+    {
+      "degree": "Bachelor of Engineering",
+      "field": "Computer Science and Engineering",
+      "institution": "Sungkyunkwan University",
+      "location": "Suwon, South Korea",
+      "startDate": "2019.02",
+      "endDate": "2022.08",
+      "status": "completed",
+      "focus": []
+    }
+  ]
+}

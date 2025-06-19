@@ -1,0 +1,36 @@
+{
+  "grants": [
+    {
+      "title": "Graduate Student Excellence Scholarship",
+      "institution": "Sungkyunkwan University",
+      "type": "Full Tuition Scholarship",
+      "reason": "Academic Excellence",
+      "startDate": "2022.09",
+      "endDate": "2026.02",
+      "status": "active"
+    }
+  ],
+  "scholarships": [
+    {
+      "title": "Sungkyun Software Scholarship",
+      "institution": "Sungkyunkwan University",
+      "type": "Full Tuition Scholarship",
+      "reason": "Academic Excellence",
+      "period": "2019.02 - 2022.08"
+    },
+    {
+      "title": "Recommendation Scholarship",
+      "institution": "Sungkyunkwan University",
+      "type": "Full Tuition Scholarship",
+      "reason": "Academic Excellence",
+      "period": "2019.02 - 2022.08"
+    },
+    {
+      "title": "Student Success Scholarship",
+      "institution": "Sungkyunkwan University",
+      "type": "Full Tuition Scholarship",
+      "reason": "Academic Excellence",
+      "period": "2019.02 - 2022.08"
+    }
+  ]
+}

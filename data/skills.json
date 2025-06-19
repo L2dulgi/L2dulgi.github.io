@@ -1,0 +1,45 @@
+{
+  "technical": {
+    "languages": ["Python", "PyTorch", "JavaScript", "C++", "Java"],
+    "frameworks": [
+      "PyTorch",
+      "TensorFlow", 
+      "Keras",
+      "OpenAI Gym",
+      "ROS (Robot Operating System)",
+      "Hugging Face Transformers"
+    ],
+    "tools": [
+      "Git",
+      "Docker",
+      "CUDA",
+      "Weights & Biases",
+      "Jupyter",
+      "LaTeX"
+    ],
+    "areas": [
+      "Deep Learning",
+      "Reinforcement Learning",
+      "Computer Vision",
+      "Natural Language Processing",
+      "Robotics",
+      "Edge Computing"
+    ]
+  },
+  "research": [
+    "Algorithm Design",
+    "Experiment Design",
+    "Statistical Analysis",
+    "Technical Writing",
+    "Research Paper Writing",
+    "Conference Presentation"
+  ],
+  "soft": [
+    "Project Management",
+    "Team Collaboration",
+    "Problem Solving",
+    "Critical Thinking",
+    "Communication",
+    "Leadership"
+  ]
+}

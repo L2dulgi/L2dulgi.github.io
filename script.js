@@ -88,10 +88,18 @@ contactForm.addEventListener('submit', (e) => {
 
 // Typing animation for hero subtitle
 const heroSubtitle = document.querySelector('.hero-subtitle');
-const roles = ['Creative Developer', 'UI/UX Designer', 'Problem Solver', 'Tech Enthusiast'];
+let roles = ['Creative Developer', 'UI/UX Designer', 'Problem Solver', 'Tech Enthusiast'];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
+
+// Function to update roles from data loader
+window.updateTypingRoles = function(newRoles) {
+    roles = newRoles;
+    roleIndex = 0;
+    charIndex = 0;
+    isDeleting = false;
+};
 
 function typeRole() {
     const currentRole = roles[roleIndex];
