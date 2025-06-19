@@ -9,6 +9,32 @@ navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');
 });
 
+// Dark Mode Toggle
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+const darkModeIcon = darkModeToggle.querySelector('i');
+
+// Load theme from localStorage or default to light
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+updateDarkModeIcon(savedTheme);
+
+darkModeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateDarkModeIcon(newTheme);
+});
+
+function updateDarkModeIcon(theme) {
+    if (theme === 'dark') {
+        darkModeIcon.className = 'fas fa-sun';
+    } else {
+        darkModeIcon.className = 'fas fa-moon';
+    }
+}
+
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
@@ -102,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Typing animation for hero subtitle
 let heroSubtitle = null;
-let roles = ['Lifelong Learning Agents', 'PhD Student @ SKKU', 'AI Researcher'];
+let roles = ['Lifelong Learning Agents', 'Ph.D. Student @ SKKU', 'AI Researcher'];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
