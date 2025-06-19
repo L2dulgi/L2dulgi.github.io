@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daehee's Portfolio</title>
+    <title>Daehee Lee - AI Research Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.2/css/academicons.min.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">Daehee</div>
+            <div class="nav-brand"><span id="nav-name">Daehee Lee</span> <span class="nav-subtitle" id="nav-subtitle">AI Researcher</span></div>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-toggle">
@@ -27,16 +29,39 @@
     </nav>
 
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Welcome to My Portfolio</h1>
-            <p class="hero-subtitle">Creative Developer & Designer</p>
-            <a href="#portfolio" class="btn btn-primary">View My Work</a>
-        </div>
-        <div class="hero-image">
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" id="hero-name">Daehee Lee</h1>
+                <p class="hero-subtitle" id="hero-title">Ph.D. Student & AI Researcher</p>
+                <p class="hero-description" id="hero-description">Loading...</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Research Projects</a>
+                    <a href="#publications" class="btn btn-secondary">Publications</a>
+                </div>
+                <div class="hero-stats" id="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="0" id="stat-projects">0</span>
+                        <span class="stat-label">Research Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="0" id="stat-experience">0</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="0" id="stat-universities">0</span>
+                        <span class="stat-label">Universities</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <img src="assets/my_profile.jpg" alt="Daehee Lee" id="profile-img">
+                    </div>
+                    <div class="neural-network">
+                        <canvas id="neuralCanvas"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -45,68 +70,99 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a passionate developer with expertise in creating beautiful and functional web experiences. I love turning ideas into reality using modern technologies.</p>
-                    <div class="skills">
-                        <div class="skill-tag">HTML5</div>
-                        <div class="skill-tag">CSS3</div>
-                        <div class="skill-tag">JavaScript</div>
-                        <div class="skill-tag">React</div>
-                        <div class="skill-tag">Node.js</div>
+                <div class="about-main">
+                    <div class="about-text">
+                        <p class="lead" id="about-short">Loading...</p>
+                        <p id="about-detailed">Loading...</p>
+                    </div>
+                    <div class="research-interests">
+                        <h3>Research Interests</h3>
+                        <div class="interest-tags" id="research-interests">
+                            <!-- Research interests will be loaded dynamically -->
+                        </div>
                     </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>50+</h3>
-                        <p>Projects Completed</p>
+                <div class="about-sidebar">
+                    <div class="education">
+                        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                        <div id="education-list">
+                            <!-- Education items will be loaded dynamically -->
+                        </div>
                     </div>
-                    <div class="stat">
-                        <h3>3+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat">
-                        <h3>30+</h3>
-                        <p>Happy Clients</p>
+                    <div class="affiliations">
+                        <h3><i class="fas fa-building"></i> Current Affiliations</h3>
+                        <ul id="affiliations-list">
+                            <!-- Affiliations will be loaded dynamically -->
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="portfolio">
+    <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">My Portfolio</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://via.placeholder.com/400x300" alt="Project 1">
-                        <div class="portfolio-overlay">
-                            <h3>Project Title 1</h3>
-                            <p>Web Development</p>
-                            <a href="#" class="btn btn-small">View Project</a>
-                        </div>
-                    </div>
+            <h2 class="section-title">Research Projects</h2>
+            <div class="research-filters">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+                <button class="filter-btn" data-filter="robotics-ai">Robotics & AI</button>
+                <button class="filter-btn" data-filter="reinforcement-learning">Reinforcement Learning</button>
+                <button class="filter-btn" data-filter="continual-learning">Continual Learning</button>
+            </div>
+            <div class="research-grid" id="researchGrid">
+                <!-- Research project cards will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="publications" class="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <div class="publication-stats">
+                <div class="pub-stat">
+                    <i class="fas fa-file-alt"></i>
+                    <span class="pub-count">25</span>
+                    <span class="pub-label">Total Papers</span>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://via.placeholder.com/400x300" alt="Project 2">
-                        <div class="portfolio-overlay">
-                            <h3>Project Title 2</h3>
-                            <p>UI/UX Design</p>
-                            <a href="#" class="btn btn-small">View Project</a>
-                        </div>
-                    </div>
+                <div class="pub-stat">
+                    <i class="fas fa-quote-right"></i>
+                    <span class="pub-count">500+</span>
+                    <span class="pub-label">Citations</span>
                 </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <img src="https://via.placeholder.com/400x300" alt="Project 3">
-                        <div class="portfolio-overlay">
-                            <h3>Project Title 3</h3>
-                            <p>Mobile App</p>
-                            <a href="#" class="btn btn-small">View Project</a>
-                        </div>
-                    </div>
+                <div class="pub-stat">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="pub-count">12</span>
+                    <span class="pub-label">h-index</span>
                 </div>
+            </div>
+            <div class="publication-filters">
+                <select id="pubYearFilter" class="filter-select">
+                    <option value="all">All Years</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+                <select id="pubTypeFilter" class="filter-select">
+                    <option value="all">All Types</option>
+                    <option value="conference">Conference</option>
+                    <option value="journal">Journal</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="preprint">Preprint</option>
+                </select>
+                <input type="text" id="pubSearch" class="search-input" placeholder="Search publications...">
+            </div>
+            <div class="publications-list" id="publicationsList">
+                <!-- Publications will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Research Projects</h2>
+            <div class="projects-timeline">
+                <!-- Project cards will be dynamically loaded here -->
             </div>
         </div>
     </section>
@@ -116,13 +172,13 @@
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Let's work together</h3>
-                    <p>Feel free to reach out if you have a project in mind or just want to chat.</p>
-                    <div class="contact-links">
-                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                    <h3>Let's collaborate</h3>
+                    <p>I'm always interested in discussing research opportunities, collaborations, or sharing insights about AI and machine learning. Feel free to reach out!</p>
+                    <div class="contact-details" id="contact-details">
+                        <!-- Contact details will be loaded dynamically -->
+                    </div>
+                    <div class="contact-links" id="contact-links">
+                        <!-- Social links will be loaded dynamically -->
                     </div>
                 </div>
                 <form class="contact-form">
@@ -142,6 +198,9 @@
     </footer>
 
     <script src="data/dataLoader.js"></script>
+    <script src="js/neural-network.js"></script>
+    <script src="js/research-cards.js"></script>
+    <script src="js/publications.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

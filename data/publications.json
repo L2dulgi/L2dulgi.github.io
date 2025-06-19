@@ -1,0 +1,55 @@
+{
+  "publications": [
+    {
+      "id": 1,
+      "title": "Incremental Learning of Retrievable Skills For Efficient Continual Task Adaptation",
+      "authors": ["Daehee Lee", "Minjong Yoo", "Woo Kyung Kim", "Wonje Choi", "Honguk Woo"],
+      "venue": "NeurIPS 2024",
+      "year": "2024",
+      "type": "conference",
+      "status": "published",
+      "abstract": "Continual Imitation Learning (CiL) involves extracting and accumulating task knowledge from demonstrations across multiple stages and tasks to achieve a multi-task policy. We present IsCiL, an adapter-based CiL framework that addresses the limitation of knowledge sharing by incrementally learning shareable skills from different demonstrations, thus enabling sample-efficient task adaptation.",
+      "tags": ["Continual Learning", "Imitation Learning", "Task Adaptation", "Reinforcement Learning"],
+      "arxiv": "https://arxiv.org/abs/2410.22658",
+      "pdf": "https://proceedings.neurips.cc/paper_files/paper/2024/file/1f0832859514e53a0e4f229fc9b3a4a2-Paper-Conference.pdf",
+      "code": "https://github.com/L2dulgi/IsCiL",
+      "citations": 0,
+      "related_project": "Self-directed Multimodal Intelligence for Solving Unknown, Open-Domain Problems"
+    },
+    {
+      "id": 2,
+      "title": "NeSyC: A Neuro-symbolic Continual Learner For Complex Embodied Tasks In Open Domains",
+      "authors": ["Wonje Choi", "Jiwon Park", "Seungwon Ahn", "Daehee Lee", "Honguk Woo"],
+      "venue": "ICLR 2025",
+      "year": "2025",
+      "type": "conference",
+      "status": "accepted",
+      "abstract": "We present NeSyC, a neuro-symbolic continual learner that emulates the hypothetico-deductive model by continually formulating and validating knowledge from limited experiences through the combined use of LLMs. NeSyC enables embodied agents to tackle complex tasks more effectively in open-domain environments.",
+      "tags": ["Neuro-symbolic Learning", "Continual Learning", "Embodied AI", "Open-domain Tasks"],
+      "openreview": "https://openreview.net/forum?id=VoayJihXra",
+      "citations": 0,
+      "related_project": "Self-directed Multimodal Intelligence for Solving Unknown, Open-Domain Problems"
+    }
+  ],
+  "statistics": {
+    "total_papers": 5,
+    "conference_papers": 2,
+    "journal_papers": 0,
+    "preprints": 3,
+    "total_citations": 0,
+    "h_index": 0,
+    "years_active": [2023, 2024, 2025]
+  },
+  "venues": {
+    "published_conferences": ["NeurIPS", "ICLR"],
+    "target_conferences": ["ICML", "AAAI", "IJCAI", "CoRL", "ICRA"],
+    "target_journals": ["IEEE Transactions on Neural Networks and Learning Systems", "Journal of Machine Learning Research", "IEEE Transactions on Robotics"],
+    "target_workshops": ["Continual Learning Workshop", "Meta-Learning Workshop", "Embodied AI Workshop"]
+  },
+  "achievements": {
+    "neurips_2024": "Published at NeurIPS 2024 - one of the top-tier AI conferences",
+    "iclr_2025": "Accepted at ICLR 2025 - top-tier machine learning conference",
+    "github_repositories": ["L2dulgi/IsCiL"],
+    "research_focus": "Continual Learning, Reinforcement Learning, Embodied AI"
+  }
+}
