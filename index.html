@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daehee Lee - AI Research Portfolio</title>
+    <title id="page-title">Loading...</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -16,8 +16,8 @@
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
                 <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-toggle">
@@ -34,29 +34,17 @@
                 <h1 class="hero-title" id="hero-name">Daehee Lee</h1>
                 <p class="hero-subtitle" id="hero-title">Ph.D. Student & AI Researcher</p>
                 <p class="hero-description" id="hero-description">Loading...</p>
-                <div class="hero-actions">
-                    <a href="#projects" class="btn btn-primary">Research Projects</a>
-                    <a href="#publications" class="btn btn-secondary">Publications</a>
+                <div class="hero-actions" id="hero-actions">
+                    <!-- Hero action buttons will be loaded dynamically -->
                 </div>
                 <div class="hero-stats" id="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="0" id="stat-projects">0</span>
-                        <span class="stat-label">Research Projects</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="0" id="stat-experience">0</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="0" id="stat-universities">0</span>
-                        <span class="stat-label">Universities</span>
-                    </div>
+                    <!-- Hero stats will be loaded dynamically -->
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="profile-section">
                     <div class="profile-image">
-                        <img src="assets/my_profile.jpg" alt="Daehee Lee" id="profile-img">
+                        <img src="assets/my_profile.jpg" alt="" id="profile-img">
                     </div>
                     <div class="neural-network">
                         <canvas id="neuralCanvas"></canvas>
@@ -68,7 +56,7 @@
 
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title" id="about-section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-main">
                     <div class="about-text">
@@ -100,57 +88,14 @@
         </div>
     </section>
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Research Projects</h2>
-            <div class="research-filters">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
-                <button class="filter-btn" data-filter="robotics-ai">Robotics & AI</button>
-                <button class="filter-btn" data-filter="reinforcement-learning">Reinforcement Learning</button>
-                <button class="filter-btn" data-filter="continual-learning">Continual Learning</button>
-            </div>
-            <div class="research-grid" id="researchGrid">
-                <!-- Research project cards will be dynamically loaded here -->
-            </div>
-        </div>
-    </section>
-
     <section id="publications" class="publications">
         <div class="container">
-            <h2 class="section-title">Publications</h2>
-            <div class="publication-stats">
-                <div class="pub-stat">
-                    <i class="fas fa-file-alt"></i>
-                    <span class="pub-count">25</span>
-                    <span class="pub-label">Total Papers</span>
-                </div>
-                <div class="pub-stat">
-                    <i class="fas fa-quote-right"></i>
-                    <span class="pub-count">500+</span>
-                    <span class="pub-label">Citations</span>
-                </div>
-                <div class="pub-stat">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="pub-count">12</span>
-                    <span class="pub-label">h-index</span>
-                </div>
+            <h2 class="section-title" id="publications-section-title">Publications</h2>
+            <div class="publication-stats" id="publication-stats">
+                <!-- Publication stats will be loaded dynamically -->
             </div>
-            <div class="publication-filters">
-                <select id="pubYearFilter" class="filter-select">
-                    <option value="all">All Years</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                </select>
-                <select id="pubTypeFilter" class="filter-select">
-                    <option value="all">All Types</option>
-                    <option value="conference">Conference</option>
-                    <option value="journal">Journal</option>
-                    <option value="workshop">Workshop</option>
-                    <option value="preprint">Preprint</option>
-                </select>
-                <input type="text" id="pubSearch" class="search-input" placeholder="Search publications...">
+            <div class="publication-filters" id="publication-filters">
+                <!-- Publication filters will be loaded dynamically -->
             </div>
             <div class="publications-list" id="publicationsList">
                 <!-- Publications will be dynamically loaded here -->
@@ -160,20 +105,24 @@
 
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Research Projects</h2>
-            <div class="projects-timeline">
-                <!-- Project cards will be dynamically loaded here -->
+            <h2 class="section-title" id="projects-section-title">Research Projects</h2>
+            <div class="research-filters" id="research-filters">
+                <!-- Research filters will be loaded dynamically -->
+            </div>
+            <div class="research-grid" id="researchGrid">
+                <!-- Research project cards will be dynamically loaded here -->
             </div>
         </div>
     </section>
 
+
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title" id="contact-section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Let's collaborate</h3>
-                    <p>I'm always interested in discussing research opportunities, collaborations, or sharing insights about AI and machine learning. Feel free to reach out!</p>
+                    <h3 id="contact-header">Let's collaborate</h3>
+                    <p id="contact-message">Loading...</p>
                     <div class="contact-details" id="contact-details">
                         <!-- Contact details will be loaded dynamically -->
                     </div>
@@ -193,7 +142,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Daehee. All rights reserved.</p>
+            <p id="footer-text">&copy; 2024 Loading...</p>
         </div>
     </footer>
 

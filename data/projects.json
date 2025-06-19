@@ -7,8 +7,8 @@
       "role": "Project Manager",
       "startDate": "2024.10",
       "endDate": "2025.02",
-      "status": "ongoing",
-      "description": "Project Manager for the design and development of a conversational robot cannon on embedded devices.",
+      "status": "completed",
+      "description": "Successfully managed the design and development of a conversational robot cannon on embedded devices during visiting scholar program at CMU.",
       "technologies": ["Edge Computing", "Robotics", "Conversational AI", "Embedded Systems"],
       "category": "Robotics & AI"
     },

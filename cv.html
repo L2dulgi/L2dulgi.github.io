@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daehee Lee - Curriculum Vitae</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            color: #333;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+        }
+        
+        .subsection-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+        }
+        
+        .entry {
+            margin-bottom: 15px;
+        }
+        
+        .entry-header {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .entry-details {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .entry-description {
+            margin-left: 20px;
+        }
+        
+        .advisor {
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 20px;
+            }
+        }
+        
+        .no-print {
+            display: none;
+        }
+        
+        @media screen {
+            .no-print {
+                display: block;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1000;
+            }
+            
+            .print-btn {
+                background: #0066cc;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 14px;
+            }
+            
+            .print-btn:hover {
+                background: #0052a3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print">
+        <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+    
+    <div class="header">
+        <div class="name">Daehee Lee</div>
+        <div class="contact-info">Ph.D. Student @ Sungkyunkwan University</div>
+        <div class="contact-info">📞 (+82) 1041675763</div>
+        <div class="contact-info">✉️ dulgi7245@skku.edu</div>
+        <div class="contact-info">🎓 <a href="https://scholar.google.com/citations?user=llB3SucAAAAJ">Google Scholar</a></div>
+        <div class="contact-info">💼 <a href="https://www.linkedin.com/in/%EB%8C%80%ED%9D%AC-%EC%9D%B4-10b396246">LinkedIn</a></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        
+        <div class="entry">
+            <div class="entry-header">MS-PhD Combined, Computer Science and Engineering</div>
+            <div class="entry-details">SungKyunKwan University, Suwon, South Korea • 2022.09 - present</div>
+            <div class="entry-description">Focus: Lifelong Learning Agent, Reinforcement Learning, Embodied Agent</div>
+        </div>
+        
+        <div class="entry">
+            <div class="entry-header">Visiting Scholar, Computer Science</div>
+            <div class="entry-details">Carnegie Mellon University, Pittsburgh, PA, USA • 2024.09 - 2025.02</div>
+            <div class="entry-description">Focus: Deep Learning, Large Scale Multimedia Analysis, Natural Language Processing<br>
+            Software and Societal Systems Department</div>
+        </div>
+        
+        <div class="entry">
+            <div class="entry-header">Bachelor of Engineering, Computer Science and Engineering</div>
+            <div class="entry-details">SungKyunKwan University, Suwon, South Korea • 2019.02 - 2022.08</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Publications</div>
+        
+        <div class="subsection-title">In Conference Proceedings</div>
+        
+        <div class="entry">
+            <div class="entry-header">Incremental Learning of Retrievable Skills For Efficient Continual Task Adaptation</div>
+            <div class="entry-details">Daehee Lee, Minjong Yoo, Woo Kyung Kim, Wonje Choi, Honguk Woo</div>
+            <div class="entry-details">NeurIPS 2024</div>
+        </div>
+        
+        <div class="entry">
+            <div class="entry-header">NeSyC: A Neuro-symbolic Continual Learner For Complex Embodied Tasks In Open Domains</div>
+            <div class="entry-details">Wonje Choi, Jiwon Park, Seungwon Ahn, Daehee Lee, Honguk Woo</div>
+            <div class="entry-details">ICLR 2025 (Accepted)</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Project Experience</div>
+        
+        <div class="subsection-title">Carnegie Mellon University, Software and Societal Systems Department</div>
+        
+        <div class="entry">
+            <div class="entry-header">Artificial Intelligence on the Edge with Robotics (AIER)</div>
+            <div class="entry-details">2024.10 - 2025.02</div>
+            <div class="entry-description">Project Manager for the design and development of a conversational robot cannon on embedded devices.</div>
+        </div>
+        
+        <div class="subsection-title">SungKyunKwan University, CSI Agent Lab</div>
+        
+        <div class="entry">
+            <div class="entry-header">Policy Generalization via Multi-modal Skill Transfer</div>
+            <div class="entry-details">2023.06 - present</div>
+            <div class="entry-description">Developing a continual learning algorithm for skill-based agents, focusing on bidirectional knowledge transfer and multi-modal skill adaptation.</div>
+        </div>
+        
+        <div class="entry">
+            <div class="entry-header">Self-directed Multimodal Intelligence for Solving Unknown, Open-Domain Problems</div>
+            <div class="entry-details">2023.05 - present</div>
+            <div class="entry-description">Conducting research on continual imitation learning with unlearning. Developing a diffusion-based policy architecture for few-shot imitation learning.</div>
+        </div>
+        
+        <div class="entry">
+            <div class="entry-header">Adaptive Personality for Intelligent Agents</div>
+            <div class="entry-details">2022.05 - 2024.03</div>
+            <div class="entry-description">Developing a multimodal semantic skill learning framework for a one-shot imitation learning algorithm in non-stationary environments.</div>
+        </div>
+        
+        <div class="entry">
+            <div class="entry-header">Federated Reinforcement Learning for Fast Adaptation</div>
+            <div class="entry-details">2021.07 - 2022.12</div>
+            <div class="entry-description">Developing a federated reinforcement learning framework and learning scenarios. Focusing on multi-task reinforcement learning and meta-learning algorithms for task adaptation.</div>
+        </div>
+        
+        <div class="advisor">
+            <strong>Advisor:</strong> Dr. Honguk Woo, Associate Professor, Department of Computer Science & Engineering, SunKyunKwan University 
+            (<a href="https://scholar.google.com/citations?user=Gaxjc7UAAAAJ&hl=en&oi=sra">Google Scholar</a>)
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Grants & Fellowships</div>
+        
+        <div class="entry">
+            <div class="entry-header">Graduate Student Excellence Scholarship</div>
+            <div class="entry-details">2022.09 - 2026.02</div>
+            <div class="entry-description">Full Tuition Scholarship for Academic Excellence, SungKyunKwan University</div>
+        </div>
+        
+        <div class="entry">
+            <div class="entry-header">Sungkyun Software Scholarship & Recommendation Scholarship & Student Success Scholarship</div>
+            <div class="entry-details">2019.02 - 2022.08</div>
+            <div class="entry-description">Full Tuition Scholarship for Academic Excellence, SungKyunKwan University</div>
+        </div>
+    </div>
+</body>
+</html>

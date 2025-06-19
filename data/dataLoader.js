@@ -1,4 +1,4 @@
-// Enhanced Data Loader Module for Dynamic Content
+// Enhanced Data Loader Module for Fully Dynamic Content
 class DataLoader {
     constructor() {
         this.data = {
@@ -8,13 +8,14 @@ class DataLoader {
             projects: null,
             publications: null,
             awards: null,
-            skills: null
+            skills: null,
+            config: null
         };
     }
 
     async loadAllData() {
         try {
-            const files = ['personal', 'education', 'research', 'projects', 'publications', 'awards', 'skills'];
+            const files = ['personal', 'education', 'research', 'projects', 'publications', 'awards', 'skills', 'config'];
             
             for (const file of files) {
                 const response = await fetch(`data/${file}.json`);
@@ -33,6 +34,14 @@ class DataLoader {
         }
     }
 
+    updatePageTitle() {
+        if (!this.data.personal || !this.data.config) return;
+        
+        const title = this.data.config.site.title_template.replace('{name}', this.data.personal.name.full);
+        document.getElementById('page-title').textContent = title;
+        document.title = title;
+    }
+
     updateNavigation() {
         if (!this.data.personal) return;
 
@@ -47,7 +56,7 @@ class DataLoader {
     }
 
     updateHeroSection() {
-        if (!this.data.personal || !this.data.projects || !this.data.education) return;
+        if (!this.data.personal || !this.data.config) return;
 
         const personal = this.data.personal;
         
@@ -55,28 +64,108 @@ class DataLoader {
         const heroName = document.getElementById('hero-name');
         const heroTitle = document.getElementById('hero-title');
         const heroDescription = document.getElementById('hero-description');
+        const profileImg = document.getElementById('profile-img');
         
         if (heroName) heroName.textContent = personal.name.full;
         if (heroTitle) heroTitle.textContent = personal.subtitle;
         if (heroDescription) heroDescription.textContent = personal.tagline + '. ' + personal.about.short;
+        if (profileImg) profileImg.alt = personal.name.full;
+        
+        // Update hero actions
+        this.updateHeroActions();
         
         // Calculate and update stats
         this.updateHeroStats();
     }
 
+    updateHeroActions() {
+        if (!this.data.config) return;
+        
+        const heroActions = document.getElementById('hero-actions');
+        if (!heroActions) return;
+        
+        heroActions.innerHTML = '';
+        
+        this.data.config.site.hero.actions.forEach(action => {
+            const link = document.createElement('a');
+            link.href = action.href;
+            link.className = action.class;
+            if (action.target) link.target = action.target;
+            
+            let content = '';
+            if (action.icon) content += `<i class="${action.icon}"></i> `;
+            content += action.text;
+            
+            link.innerHTML = content;
+            heroActions.appendChild(link);
+        });
+    }
+
+    calculateYearsExperience() {
+        if (!this.data.education) return 0;
+        
+        // Find MS-PhD Combined program start date
+        const msPhdDegree = this.data.education.degrees.find(degree => 
+            degree.degree === 'MS-PhD Combined' || 
+            degree.degree.toLowerCase().includes('ms-phd') ||
+            degree.degree.toLowerCase().includes('phd')
+        );
+        
+        if (!msPhdDegree) return 0;
+        
+        const startDate = msPhdDegree.startDate;
+        const [year, month] = startDate.split('.');
+        const startYear = parseInt(year);
+        const startMonth = parseInt(month);
+        
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth() + 1; // getMonth() returns 0-11
+        
+        let years = currentYear - startYear;
+        if (currentMonth < startMonth) {
+            years -= 1;
+        }
+        
+        return Math.max(0, years);
+    }
+
     updateHeroStats() {
-        if (!this.data.projects || !this.data.education) return;
+        if (!this.data.projects || !this.data.education || !this.data.config) return;
 
-        const projectCount = this.data.projects.projects.length;
-        const currentYear = new Date().getFullYear();
-        const startYear = parseInt(this.data.education.degrees[2]?.startDate?.split('.')[0] || currentYear);
-        const yearsExperience = currentYear - startYear;
-        const universitiesCount = [...new Set(this.data.education.degrees.map(d => d.institution))].length;
-
-        // Update stat numbers and animate
-        this.animateStatNumber('stat-projects', projectCount);
-        this.animateStatNumber('stat-experience', yearsExperience);
-        this.animateStatNumber('stat-universities', universitiesCount);
+        const heroStats = document.getElementById('hero-stats');
+        if (!heroStats) return;
+        
+        heroStats.innerHTML = '';
+        
+        // Calculate stats
+        const stats = {
+            projects_count: this.data.projects.projects.length,
+            years_experience: this.calculateYearsExperience(),
+            universities_count: [...new Set(this.data.education.degrees.map(d => d.institution))].length
+        };
+        
+        // Add publications count if available
+        if (this.data.publications) {
+            stats.publications_count = this.data.publications.statistics.total_papers;
+        }
+        
+        this.data.config.site.hero.stats.forEach(statConfig => {
+            const statItem = document.createElement('div');
+            statItem.className = 'stat-item';
+            
+            const value = stats[statConfig.source] || 0;
+            
+            statItem.innerHTML = `
+                <span class="stat-number" data-target="${value}" id="${statConfig.id}">0</span>
+                <span class="stat-label">${statConfig.label}</span>
+            `;
+            
+            heroStats.appendChild(statItem);
+            
+            // Animate the number
+            this.animateStatNumber(statConfig.id, value);
+        });
     }
 
     animateStatNumber(elementId, targetValue) {
@@ -96,6 +185,18 @@ class DataLoader {
                 element.textContent = Math.floor(current);
             }
         }, 50);
+    }
+
+    updateSectionTitles() {
+        if (!this.data.config) return;
+        
+        const sections = this.data.config.site.sections;
+        Object.keys(sections).forEach(sectionKey => {
+            const element = document.getElementById(`${sectionKey}-section-title`);
+            if (element) {
+                element.textContent = sections[sectionKey];
+            }
+        });
     }
 
     updateAboutSection() {
@@ -176,6 +277,7 @@ class DataLoader {
         
         // Get current affiliations from education and projects
         const currentAffiliations = new Set();
+        const pastAffiliations = new Set();
         
         // Add current institutions from education
         this.data.education.degrees.forEach(degree => {
@@ -187,6 +289,8 @@ class DataLoader {
                 } else {
                     currentAffiliations.add(degree.institution);
                 }
+            } else if (degree.status === 'completed' && degree.degree === 'Visiting Scholar') {
+                pastAffiliations.add(`${degree.institution} (Visiting Scholar, ${degree.endDate})`);
             }
         });
         
@@ -203,17 +307,112 @@ class DataLoader {
             }
         });
         
+        // Add current affiliations
         currentAffiliations.forEach(affiliation => {
             const li = document.createElement('li');
             li.textContent = affiliation;
             affiliationsList.appendChild(li);
         });
+        
+        // Add past affiliations with different styling
+        pastAffiliations.forEach(affiliation => {
+            const li = document.createElement('li');
+            li.textContent = affiliation;
+            li.style.opacity = '0.7';
+            li.style.fontStyle = 'italic';
+            affiliationsList.appendChild(li);
+        });
+    }
+
+    updatePublicationsSection() {
+        if (!this.data.publications || !this.data.config) return;
+        
+        // Update publication stats
+        this.updatePublicationStats();
+        
+        // Update publication filters
+        this.updatePublicationFilters();
+    }
+
+    updatePublicationStats() {
+        if (!this.data.publications || !this.data.config) return;
+        
+        const statsContainer = document.getElementById('publication-stats');
+        if (!statsContainer) return;
+        
+        statsContainer.innerHTML = '';
+        
+        const stats = this.data.publications.statistics;
+        
+        this.data.config.site.publications.stats.forEach(statConfig => {
+            const statDiv = document.createElement('div');
+            statDiv.className = 'pub-stat';
+            
+            const value = stats[statConfig.source] || 0;
+            
+            statDiv.innerHTML = `
+                <i class="${statConfig.icon}"></i>
+                <span class="pub-count">${value}</span>
+                <span class="pub-label">${statConfig.label}</span>
+            `;
+            
+            statsContainer.appendChild(statDiv);
+        });
+    }
+
+    updatePublicationFilters() {
+        if (!this.data.publications || !this.data.config) return;
+        
+        const filtersContainer = document.getElementById('publication-filters');
+        if (!filtersContainer) return;
+        
+        const stats = this.data.publications.statistics;
+        const config = this.data.config.site.publications.filters;
+        
+        filtersContainer.innerHTML = `
+            <select id="pubYearFilter" class="filter-select">
+                <option value="all">${config.years.label}</option>
+                ${stats.years_active.map(year => `<option value="${year}">${year}</option>`).join('')}
+            </select>
+            <select id="pubTypeFilter" class="filter-select">
+                <option value="all">${config.types.label}</option>
+                ${config.types.options.map(type => 
+                    `<option value="${type}">${type.charAt(0).toUpperCase() + type.slice(1)}</option>`
+                ).join('')}
+            </select>
+            <input type="text" id="pubSearch" class="search-input" placeholder="Search publications...">
+        `;
+    }
+
+    updateProjectsSection() {
+        if (!this.data.config) return;
+        
+        const filtersContainer = document.getElementById('research-filters');
+        if (!filtersContainer) return;
+        
+        filtersContainer.innerHTML = '';
+        
+        this.data.config.site.projects.filters.forEach(filter => {
+            const button = document.createElement('button');
+            button.className = `filter-btn ${filter.active ? 'active' : ''}`;
+            button.setAttribute('data-filter', filter.value);
+            button.textContent = filter.text;
+            filtersContainer.appendChild(button);
+        });
     }
 
     updateContactSection() {
-        if (!this.data.personal) return;
+        if (!this.data.personal || !this.data.config) return;
 
         const personal = this.data.personal;
+        const config = this.data.config.site.contact;
+        
+        // Update contact header and message
+        const contactHeader = document.getElementById('contact-header');
+        const contactMessage = document.getElementById('contact-message');
+        
+        if (contactHeader) contactHeader.textContent = config.header;
+        if (contactMessage) contactMessage.textContent = config.message;
         
         // Update contact details
         const contactDetails = document.getElementById('contact-details');
@@ -221,8 +420,8 @@ class DataLoader {
             contactDetails.innerHTML = `
                 <p><strong>Email:</strong> <a href="mailto:${personal.contact.email}">${personal.contact.email}</a></p>
                 <p><strong>Phone:</strong> ${personal.contact.phone}</p>
-                <p><strong>Current Location:</strong> ${personal.contact.currentLocation}</p>
-                <p><strong>Home:</strong> ${personal.contact.location}</p>
+                <p><strong>Location:</strong> ${personal.contact.currentLocation}</p>
+                <p><strong>Recent:</strong> Visiting Scholar at Carnegie Mellon University (2024-2025)</p>
             `;
         }
         
@@ -263,24 +462,18 @@ class DataLoader {
         }
     }
 
-    updatePublicationStats() {
-        if (!this.data.publications) return;
+    updateFooter() {
+        if (!this.data.personal || !this.data.config) return;
         
-        const stats = this.data.publications.statistics;
+        const footerText = document.getElementById('footer-text');
+        if (!footerText) return;
         
-        // Update publication statistics in the publications section
-        const pubStats = document.querySelectorAll('.pub-count');
-        if (pubStats.length >= 3) {
-            pubStats[0].textContent = stats.total_papers;
-            pubStats[1].textContent = stats.total_citations || '0';
-            pubStats[2].textContent = stats.h_index || '0';
-        }
+        const currentYear = new Date().getFullYear();
+        const text = this.data.config.site.footer.template
+            .replace('{year}', currentYear)
+            .replace('{name}', this.data.personal.name.full);
         
-        // Update hero stats if needed
-        const statPublications = document.getElementById('stat-publications');
-        if (statPublications) {
-            this.animateStatNumber('stat-publications', stats.total_papers);
-        }
+        footerText.innerHTML = text;
     }
 
     async init() {
@@ -288,13 +481,17 @@ class DataLoader {
             await this.loadAllData();
             
             // Update all sections
+            this.updatePageTitle();
             this.updateNavigation();
             this.updateHeroSection();
+            this.updateSectionTitles();
             this.updateAboutSection();
             this.updateEducationSection();
             this.updateAffiliationsSection();
+            this.updatePublicationsSection();
+            this.updateProjectsSection();
             this.updateContactSection();
-            this.updatePublicationStats();
+            this.updateFooter();
             
             console.log('All sections updated successfully');
         } catch (error) {

@@ -11,7 +11,7 @@
     "phone": "(+82) 1041675763",
     "email": "dulgi7245@skku.edu",
     "location": "Suwon, South Korea",
-    "currentLocation": "Pittsburgh, PA, USA (Visiting Scholar)"
+    "currentLocation": "Suwon, South Korea"
   },
   "social": {
     "googleScholar": "https://scholar.google.com/citations?user=llB3SucAAAAJ",
@@ -20,7 +20,7 @@
     "twitter": ""
   },
   "about": {
-    "short": "I'm a Ph.D. student at Sungkyunkwan University and visiting scholar at Carnegie Mellon University, specializing in reinforcement learning, embodied AI agents, and lifelong learning systems.",
-    "detailed": "As a researcher at the intersection of artificial intelligence and robotics, I focus on developing intelligent agents that can continuously learn and adapt in dynamic environments. My work spans reinforcement learning, multi-modal intelligence, and embodied AI systems. Currently, I'm leading the AIER project at CMU, designing conversational robot systems for edge computing."
+    "short": "I'm a Ph.D. student at Sungkyunkwan University, specializing in reinforcement learning, embodied AI agents, and lifelong learning systems. Recently completed a visiting research period at Carnegie Mellon University.",
+    "detailed": "As a researcher at the intersection of artificial intelligence and robotics, I focus on developing intelligent agents that can continuously learn and adapt in dynamic environments. My work spans reinforcement learning, multi-modal intelligence, and embodied AI systems. I recently completed a successful visiting scholar program at CMU, where I led the AIER project designing conversational robot systems for edge computing."
   }
 }

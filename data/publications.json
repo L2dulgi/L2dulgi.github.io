@@ -2,6 +2,19 @@
   "publications": [
     {
       "id": 1,
+      "title": "One-shot imitation in a non-stationary environment via multi-modal skill",
+      "authors": ["Daehee Lee", "Honguk Woo"],
+      "venue": "Under Review",
+      "year": "2024",
+      "type": "preprint",
+      "status": "under_review",
+      "abstract": "We propose a multimodal semantic skill learning framework for one-shot imitation learning in non-stationary environments. The approach enables agents to adapt quickly to new tasks through multi-modal skill representation and transfer.",
+      "tags": ["One-shot Learning", "Imitation Learning", "Multi-modal Learning", "Non-stationary Environments", "Skill Transfer"],
+      "citations": 0,
+      "related_project": "Adaptive Personality for Intelligent Agents"
+    },
+    {
+      "id": 2,
       "title": "Incremental Learning of Retrievable Skills For Efficient Continual Task Adaptation",
       "authors": ["Daehee Lee", "Minjong Yoo", "Woo Kyung Kim", "Wonje Choi", "Honguk Woo"],
       "venue": "NeurIPS 2024",
@@ -32,10 +45,10 @@
     }
   ],
   "statistics": {
-    "total_papers": 5,
+    "total_papers": 6,
     "conference_papers": 2,
     "journal_papers": 0,
-    "preprints": 3,
+    "preprints": 4,
     "total_citations": 0,
     "h_index": 0,
     "years_active": [2023, 2024, 2025]

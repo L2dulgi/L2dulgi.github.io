@@ -1,0 +1,110 @@
+{
+  "site": {
+    "title_template": "{name} - AI Research Portfolio",
+    "sections": {
+      "about": "About Me",
+      "publications": "Publications", 
+      "projects": "Research Projects",
+      "contact": "Get In Touch"
+    },
+    "hero": {
+      "actions": [
+        {
+          "text": "Publications",
+          "href": "#publications",
+          "class": "btn btn-primary"
+        },
+        {
+          "text": "Research Projects", 
+          "href": "#projects",
+          "class": "btn btn-secondary"
+        },
+        {
+          "text": "View CV",
+          "href": "cv.html",
+          "class": "btn btn-outline",
+          "target": "_blank",
+          "icon": "fas fa-file-pdf"
+        }
+      ],
+      "stats": [
+        {
+          "id": "stat-projects",
+          "label": "Research Projects",
+          "source": "projects_count"
+        },
+        {
+          "id": "stat-experience", 
+          "label": "Years Experience",
+          "source": "years_experience"
+        },
+        {
+          "id": "stat-universities",
+          "label": "Universities", 
+          "source": "universities_count"
+        }
+      ]
+    },
+    "publications": {
+      "stats": [
+        {
+          "icon": "fas fa-file-alt",
+          "label": "Total Papers",
+          "source": "total_papers"
+        },
+        {
+          "icon": "fas fa-quote-right", 
+          "label": "Citations",
+          "source": "total_citations"
+        },
+        {
+          "icon": "fas fa-chart-line",
+          "label": "h-index",
+          "source": "h_index"
+        }
+      ],
+      "filters": {
+        "years": {
+          "label": "All Years",
+          "source": "years_active"
+        },
+        "types": {
+          "label": "All Types",
+          "options": ["conference", "journal", "workshop", "preprint"]
+        }
+      }
+    },
+    "projects": {
+      "filters": [
+        {
+          "text": "All Projects",
+          "value": "all",
+          "active": true
+        },
+        {
+          "text": "Machine Learning",
+          "value": "machine-learning"
+        },
+        {
+          "text": "Robotics & AI", 
+          "value": "robotics-ai"
+        },
+        {
+          "text": "Reinforcement Learning",
+          "value": "reinforcement-learning"
+        },
+        {
+          "text": "Continual Learning",
+          "value": "continual-learning"
+        }
+      ]
+    },
+    "contact": {
+      "header": "Let's collaborate",
+      "message": "I'm always interested in discussing research opportunities, collaborations, or sharing insights about AI and machine learning. Feel free to reach out!"
+    },
+    "footer": {
+      "template": "&copy; {year} {name}. All rights reserved."
+    }
+  }
+}

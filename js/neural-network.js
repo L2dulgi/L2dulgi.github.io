@@ -27,40 +27,47 @@ class NeuralNetworkVisualization {
     }
 
     generateNetwork() {
-        const layers = [3, 5, 4, 3, 2]; // Network architecture
+        const layers = [4, 6, 5, 4, 3]; // Network architecture
         const layerSpacing = this.canvas.width / (layers.length + 1);
         
-        // Generate nodes
+        // Generate nodes with more spread
         layers.forEach((nodeCount, layerIndex) => {
             const x = layerSpacing * (layerIndex + 1);
             const nodeSpacing = this.canvas.height / (nodeCount + 1);
             
             for (let i = 0; i < nodeCount; i++) {
                 const y = nodeSpacing * (i + 1);
+                // Add some randomness to avoid perfect grid
+                const offsetX = (Math.random() - 0.5) * 40;
+                const offsetY = (Math.random() - 0.5) * 30;
+                
                 this.nodes.push({
-                    x: x,
-                    y: y,
+                    x: x + offsetX,
+                    y: y + offsetY,
                     layer: layerIndex,
                     index: i,
-                    radius: 8,
+                    radius: 5,
                     activation: Math.random()
                 });
             }
         });
         
-        // Generate connections
+        // Generate connections with some randomness
         for (let l = 0; l < layers.length - 1; l++) {
             const currentLayerNodes = this.nodes.filter(n => n.layer === l);
             const nextLayerNodes = this.nodes.filter(n => n.layer === l + 1);
             
             currentLayerNodes.forEach(node1 => {
                 nextLayerNodes.forEach(node2 => {
-                    this.connections.push({
-                        from: node1,
-                        to: node2,
-                        weight: (Math.random() - 0.5) * 2,
-                        signal: 0
-                    });
+                    // Only connect some nodes to avoid too dense network
+                    if (Math.random() > 0.3) {
+                        this.connections.push({
+                            from: node1,
+                            to: node2,
+                            weight: (Math.random() - 0.5) * 2,
+                            signal: 0
+                        });
+                    }
                 });
             });
         }
@@ -82,49 +89,40 @@ class NeuralNetworkVisualization {
         
         // Draw connections
         this.connections.forEach(conn => {
-            const gradient = this.ctx.createLinearGradient(
-                conn.from.x, conn.from.y,
-                conn.to.x, conn.to.y
-            );
-            
-            const opacity = 0.1 + conn.signal * 0.3;
-            const color = `rgba(0, 150, 255, ${opacity})`;
-            
-            gradient.addColorStop(0, color);
-            gradient.addColorStop(0.5, `rgba(0, 200, 255, ${opacity * 1.5})`);
-            gradient.addColorStop(1, color);
+            const opacity = 0.5 + conn.signal * 0.15;
+            const color = `rgba(0, 102, 204, ${opacity})`;
             
             this.ctx.beginPath();
             this.ctx.moveTo(conn.from.x, conn.from.y);
             this.ctx.lineTo(conn.to.x, conn.to.y);
-            this.ctx.strokeStyle = gradient;
-            this.ctx.lineWidth = 1 + conn.signal;
+            this.ctx.strokeStyle = color;
+            this.ctx.lineWidth = 0.5 + conn.signal * 0.5;
             this.ctx.stroke();
         });
         
         // Draw nodes
         this.nodes.forEach(node => {
-            // Node glow
+            // Node glow (more subtle)
             const glowGradient = this.ctx.createRadialGradient(
                 node.x, node.y, 0,
                 node.x, node.y, node.radius * 2
             );
-            glowGradient.addColorStop(0, `rgba(0, 150, 255, ${node.activation * 0.8})`);
-            glowGradient.addColorStop(1, 'rgba(0, 150, 255, 0)');
+            glowGradient.addColorStop(0, `rgba(0, 102, 204, ${node.activation * 0.4})`);
+            glowGradient.addColorStop(1, 'rgba(0, 102, 204, 0)');
             
             this.ctx.beginPath();
             this.ctx.arc(node.x, node.y, node.radius * 2, 0, Math.PI * 2);
             this.ctx.fillStyle = glowGradient;
             this.ctx.fill();
             
-            // Node core
+            // Node core (more subtle)
             this.ctx.beginPath();
             this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = `rgba(255, 255, 255, ${0.8 + node.activation * 0.2})`;
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${0.3 + node.activation * 0.2})`;
             this.ctx.fill();
             
-            this.ctx.strokeStyle = `rgba(0, 150, 255, ${0.5 + node.activation * 0.5})`;
-            this.ctx.lineWidth = 2;
+            this.ctx.strokeStyle = `rgba(0, 102, 204, ${0.2 + node.activation * 0.3})`;
+            this.ctx.lineWidth = 1;
             this.ctx.stroke();
         });
         
