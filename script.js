@@ -101,48 +101,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Typing animation for hero subtitle
-const heroSubtitle = document.querySelector('.hero-subtitle');
-let roles = ['Lifelong Learning Agents', 'Tech Enthusiast'];
+let heroSubtitle = null;
+let roles = ['Lifelong Learning Agents', 'PhD Student @ SKKU', 'AI Researcher'];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
+let typingActive = false;
+
+// Function to start typing animation
+window.startTypingAnimation = function() {
+    heroSubtitle = document.getElementById('hero-title');
+    if (heroSubtitle && !typingActive) {
+        typingActive = true;
+        typeRole();
+    }
+};
 
 // Function to update roles from data loader
 window.updateTypingRoles = function(newRoles) {
-    roles = newRoles;
-    roleIndex = 0;
-    charIndex = 0;
-    isDeleting = false;
+    if (newRoles && newRoles.length > 0) {
+        roles = newRoles;
+        roleIndex = 0;
+        charIndex = 0;
+        isDeleting = false;
+    }
 };
 
 function typeRole() {
     const currentRole = roles[roleIndex];
     
     if (isDeleting) {
-        heroSubtitle.textContent = currentRole.substring(0, charIndex - 1);
-        charIndex--;
-        
-        if (charIndex === 0) {
+        if (charIndex > 0) {
+            charIndex--;
+            // Use invisible character to maintain spacing/height
+            const visibleText = currentRole.substring(0, charIndex);
+            const invisibleSpacing = '\u200B'.repeat(currentRole.length - charIndex); // Zero-width space
+            heroSubtitle.innerHTML = visibleText + '<span style="opacity: 0;">' + invisibleSpacing + '</span>';
+        } else {
+            // Switch to next role
             isDeleting = false;
             roleIndex = (roleIndex + 1) % roles.length;
+            charIndex = 0;
+            // Add a longer pause between role transitions for smoother effect
+            setTimeout(typeRole, 1000);
+            return;
         }
     } else {
-        heroSubtitle.textContent = currentRole.substring(0, charIndex + 1);
         charIndex++;
+        const visibleText = currentRole.substring(0, charIndex);
+        const invisibleSpacing = charIndex < currentRole.length ? 
+            '<span style="opacity: 0;">' + currentRole.substring(charIndex) + '</span>' : '';
+        heroSubtitle.innerHTML = visibleText + invisibleSpacing;
         
         if (charIndex === currentRole.length) {
             isDeleting = true;
-            setTimeout(typeRole, 2000); // Pause at the end
+            // Longer pause when fully typed for better readability
+            setTimeout(typeRole, 3000);
             return;
         }
     }
     
-    setTimeout(typeRole, isDeleting ? 50 : 100);
+    // Slower typing/deleting for less noisy effect
+    setTimeout(typeRole, isDeleting ? 80 : 120);
 }
 
-// Start typing animation after page loads
+// Start typing animation after data is loaded
 window.addEventListener('load', () => {
-    setTimeout(typeRole, 1000);
+    // Wait for dataLoader to finish before starting typing animation
+    setTimeout(() => {
+        if (window.dataLoader && window.dataLoader.data.personal) {
+            // Use data from personal info if available
+            const personal = window.dataLoader.data.personal;
+            if (personal.roles) {
+                window.updateTypingRoles(personal.roles);
+            }
+        }
+        window.startTypingAnimation();
+    }, 2000); // Wait for dataLoader to complete
 });
 
 // Add parallax effect to shapes
