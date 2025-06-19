@@ -13,11 +13,11 @@
           "class": "btn btn-primary"
         },
         {
-          "text": "View CV",
-          "href": "cv.html",
+          "text": "Download CV",
+          "href": "cv/DaeheeLee_CV.pdf",
           "class": "btn btn-outline",
           "target": "_blank",
-          "icon": "fas fa-file-pdf"
+          "icon": "fas fa-download"
         }
       ],
       "stats": [

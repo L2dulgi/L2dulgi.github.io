@@ -70,23 +70,24 @@ class DataLoader {
         if (heroDescription) heroDescription.textContent = personal.tagline + '. ' + personal.about.short;
         if (profileImg) profileImg.alt = personal.name.full;
         
-        // Update hero actions
+        // Update hero actions and social links
         this.updateHeroActions();
         
         // Calculate and update stats
         this.updateHeroStats();
-        
-        // Update social links
-        this.updateHeroSocialLinks();
     }
 
     updateHeroActions() {
-        if (!this.data.config) return;
+        if (!this.data.config || !this.data.personal) return;
         
         const heroActions = document.getElementById('hero-actions');
         if (!heroActions) return;
         
         heroActions.innerHTML = '';
+        
+        // Create buttons container
+        const buttonsDiv = document.createElement('div');
+        buttonsDiv.className = 'hero-buttons';
         
         this.data.config.site.hero.actions.forEach(action => {
             const link = document.createElement('a');
@@ -99,8 +100,35 @@ class DataLoader {
             content += action.text;
             
             link.innerHTML = content;
-            heroActions.appendChild(link);
+            buttonsDiv.appendChild(link);
         });
+        
+        // Create social links container
+        const socialDiv = document.createElement('div');
+        socialDiv.className = 'hero-social';
+        
+        this.data.config.site.hero.social_links.forEach(socialConfig => {
+            const link = document.createElement('a');
+            link.className = 'social-link';
+            link.title = socialConfig.title;
+            link.target = '_blank';
+            
+            // Set href based on source
+            if (socialConfig.href_source === 'googleScholar') {
+                link.href = this.data.personal.social.googleScholar;
+            } else if (socialConfig.href_source === 'linkedin') {
+                link.href = this.data.personal.social.linkedin;
+            } else if (socialConfig.href_source === 'email') {
+                link.href = `mailto:${this.data.personal.contact.email}`;
+            }
+            
+            link.innerHTML = `<i class="${socialConfig.icon}"></i>`;
+            socialDiv.appendChild(link);
+        });
+        
+        // Append both containers to hero-actions
+        heroActions.appendChild(buttonsDiv);
+        heroActions.appendChild(socialDiv);
     }
 
     calculateYearsExperience() {
@@ -185,33 +213,6 @@ class DataLoader {
         }, 50);
     }
 
-    updateHeroSocialLinks() {
-        if (!this.data.personal || !this.data.config) return;
-        
-        const heroSocial = document.getElementById('hero-social');
-        if (!heroSocial) return;
-        
-        heroSocial.innerHTML = '';
-        
-        this.data.config.site.hero.social_links.forEach(socialConfig => {
-            const link = document.createElement('a');
-            link.className = 'social-link';
-            link.title = socialConfig.title;
-            link.target = '_blank';
-            
-            // Set href based on source
-            if (socialConfig.href_source === 'googleScholar') {
-                link.href = this.data.personal.social.googleScholar;
-            } else if (socialConfig.href_source === 'linkedin') {
-                link.href = this.data.personal.social.linkedin;
-            } else if (socialConfig.href_source === 'email') {
-                link.href = `mailto:${this.data.personal.contact.email}`;
-            }
-            
-            link.innerHTML = `<i class="${socialConfig.icon}"></i>`;
-            heroSocial.appendChild(link);
-        });
-    }
 
     updateSectionTitles() {
         if (!this.data.config) return;
@@ -429,6 +430,11 @@ class DataLoader {
             this.updateFooter();
             
             console.log('All sections updated successfully');
+            
+            // Initialize scroll animations for dynamic content
+            if (window.observeNewElements) {
+                window.observeNewElements();
+            }
         } catch (error) {
             console.error('Error initializing data loader:', error);
         }

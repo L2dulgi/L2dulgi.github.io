@@ -34,6 +34,7 @@ class Publication {
                     ${this.data.pdf ? `<a href="${this.data.pdf}" class="pub-link" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>` : ''}
                     ${this.data.arxiv ? `<a href="${this.data.arxiv}" class="pub-link" target="_blank"><i class="ai ai-arxiv"></i> arXiv</a>` : ''}
                     ${this.data.code ? `<a href="${this.data.code}" class="pub-link" target="_blank"><i class="fab fa-github"></i> Code</a>` : ''}
+                    ${this.data.openreview ? `<a href="${this.data.openreview}" class="pub-link openreview-link" target="_blank"><i class="fas fa-external-link-alt"></i> OpenReview</a>` : ''}
                     ${this.data.project ? `<a href="${this.data.project}" class="pub-link" target="_blank"><i class="fas fa-project-diagram"></i> Project</a>` : ''}
                     ${this.data.video ? `<a href="${this.data.video}" class="pub-link" target="_blank"><i class="fab fa-youtube"></i> Video</a>` : ''}
                     <button class="pub-link cite-btn" data-pub-id="${this.data.id}"><i class="fas fa-quote-left"></i> Cite</button>
@@ -289,30 +290,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start loading publications
     loadPublicationsFromDataLoader();
 
-    // Setup filters
-    const yearFilter = document.getElementById('pubYearFilter');
-    const typeFilter = document.getElementById('pubTypeFilter');
-    const searchInput = document.getElementById('pubSearch');
+    // Setup filters - wait for them to be created by dataLoader
+    const setupFilters = () => {
+        const yearFilter = document.getElementById('pubYearFilter');
+        const typeFilter = document.getElementById('pubTypeFilter');
+        const searchInput = document.getElementById('pubSearch');
 
-    if (yearFilter) {
-        yearFilter.addEventListener('change', (e) => {
-            pubManager.setFilter('year', e.target.value);
-        });
-    }
+        if (yearFilter && typeFilter && searchInput) {
+            yearFilter.addEventListener('change', (e) => {
+                pubManager.setFilter('year', e.target.value);
+            });
 
-    if (typeFilter) {
-        typeFilter.addEventListener('change', (e) => {
-            pubManager.setFilter('type', e.target.value);
-        });
-    }
+            typeFilter.addEventListener('change', (e) => {
+                pubManager.setFilter('type', e.target.value);
+            });
 
-    if (searchInput) {
-        let searchTimeout;
-        searchInput.addEventListener('input', (e) => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => {
-                pubManager.setFilter('search', e.target.value);
-            }, 300);
-        });
-    }
+            let searchTimeout;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    pubManager.setFilter('search', e.target.value);
+                }, 300);
+            });
+        } else {
+            // Retry if filters aren't ready yet
+            setTimeout(setupFilters, 100);
+        }
+    };
+
+    // Start setting up filters
+    setupFilters();
 });

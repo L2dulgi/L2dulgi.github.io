@@ -56,35 +56,49 @@ const observerOptions = {
 const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
             entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
             observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    observer.observe(section);
+// Wait for DOM to be fully loaded before observing sections
+document.addEventListener('DOMContentLoaded', () => {
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+        if (!section.classList.contains('hero')) { // Don't animate hero section
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            observer.observe(section);
+        }
+    });
+    
+    // Function to observe dynamically created elements
+    window.observeNewElements = function() {
+        setTimeout(() => {
+            document.querySelectorAll('.publication-item, .research-card').forEach(element => {
+                if (element.style.opacity !== '0') { // Only observe if not already observed
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(30px)';
+                    observer.observe(element);
+                }
+            });
+        }, 500); // Wait for dynamic content to load
+    };
+    
+    // Initial observation for existing elements
+    document.querySelectorAll('.about-content').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        observer.observe(element);
+    });
+    
+    // Observe dynamic elements after a delay
+    window.observeNewElements();
 });
 
-// Contact form submission
-const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    // Here you would normally send the data to a server
-    alert('Thank you for your message! I will get back to you soon.');
-    
-    // Reset form
-    contactForm.reset();
-});
 
 // Typing animation for hero subtitle
 const heroSubtitle = document.querySelector('.hero-subtitle');

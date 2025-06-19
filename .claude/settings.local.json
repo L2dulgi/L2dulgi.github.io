@@ -5,7 +5,9 @@
       "Bash(git commit:*)",
       "Bash(mkdir:*)",
       "WebFetch(domain:scholar.google.co.kr)",
-      "Bash(pdflatex:*)"
+      "Bash(pdflatex:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)"
     ],
     "deny": []
   }

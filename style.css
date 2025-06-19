@@ -172,7 +172,7 @@ h1, h2, h3, h4, h5, h6 {
     animation: fadeInUp 0.8s ease 0.2s both;
 }
 
-.hero-actions-social {
+.hero-actions {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -181,7 +181,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
 }
 
-.hero-actions {
+.hero-buttons {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
@@ -830,6 +830,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .pub-link:hover {
     color: var(--secondary-color);
+}
+
+.openreview-link {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: var(--white) !important;
+    padding: 4px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.openreview-link:hover {
+    background: linear-gradient(135deg, #45a049, #3d8b40);
+    color: var(--white) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
 .cite-btn {
