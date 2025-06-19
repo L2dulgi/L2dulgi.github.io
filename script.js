@@ -88,7 +88,7 @@ contactForm.addEventListener('submit', (e) => {
 
 // Typing animation for hero subtitle
 const heroSubtitle = document.querySelector('.hero-subtitle');
-let roles = ['Creative Developer', 'UI/UX Designer', 'Problem Solver', 'Tech Enthusiast'];
+let roles = ['Lifelong Learning Agents', 'Tech Enthusiast'];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;

@@ -3,9 +3,7 @@
     "title_template": "{name} - AI Research Portfolio",
     "sections": {
       "about": "About Me",
-      "publications": "Publications", 
-      "projects": "Research Projects",
-      "contact": "Get In Touch"
+      "publications": "Publications"
     },
     "hero": {
       "actions": [
@@ -13,11 +11,6 @@
           "text": "Publications",
           "href": "#publications",
           "class": "btn btn-primary"
-        },
-        {
-          "text": "Research Projects", 
-          "href": "#projects",
-          "class": "btn btn-secondary"
         },
         {
           "text": "View CV",
@@ -29,19 +22,26 @@
       ],
       "stats": [
         {
-          "id": "stat-projects",
-          "label": "Research Projects",
-          "source": "projects_count"
+          "id": "stat-papers", 
+          "label": "Published Papers",
+          "source": "publications_count"
+        }
+      ],
+      "social_links": [
+        {
+          "icon": "fas fa-graduation-cap",
+          "title": "Google Scholar",
+          "href_source": "googleScholar"
         },
         {
-          "id": "stat-experience", 
-          "label": "Years Experience",
-          "source": "years_experience"
+          "icon": "fab fa-linkedin",
+          "title": "LinkedIn", 
+          "href_source": "linkedin"
         },
         {
-          "id": "stat-universities",
-          "label": "Universities", 
-          "source": "universities_count"
+          "icon": "fas fa-envelope",
+          "title": "Email",
+          "href_source": "email"
         }
       ]
     },
@@ -73,35 +73,6 @@
           "options": ["conference", "journal", "workshop", "preprint"]
         }
       }
-    },
-    "projects": {
-      "filters": [
-        {
-          "text": "All Projects",
-          "value": "all",
-          "active": true
-        },
-        {
-          "text": "Machine Learning",
-          "value": "machine-learning"
-        },
-        {
-          "text": "Robotics & AI", 
-          "value": "robotics-ai"
-        },
-        {
-          "text": "Reinforcement Learning",
-          "value": "reinforcement-learning"
-        },
-        {
-          "text": "Continual Learning",
-          "value": "continual-learning"
-        }
-      ]
-    },
-    "contact": {
-      "header": "Let's collaborate",
-      "message": "I'm always interested in discussing research opportunities, collaborations, or sharing insights about AI and machine learning. Feel free to reach out!"
     },
     "footer": {
       "template": "&copy; {year} {name}. All rights reserved."

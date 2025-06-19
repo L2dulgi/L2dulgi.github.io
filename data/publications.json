@@ -3,15 +3,16 @@
     {
       "id": 1,
       "title": "One-shot imitation in a non-stationary environment via multi-modal skill",
-      "authors": ["Daehee Lee", "Honguk Woo"],
-      "venue": "Under Review",
-      "year": "2024",
-      "type": "preprint",
-      "status": "under_review",
+      "authors": ["Sangwoo Shin", "Daehee Lee", "Minjong Yoo", "Woo Kyung Kim", "Honguk Woo"],
+      "venue": "ICML 2023",
+      "year": "2023",
+      "type": "conference",
+      "status": "published",
       "abstract": "We propose a multimodal semantic skill learning framework for one-shot imitation learning in non-stationary environments. The approach enables agents to adapt quickly to new tasks through multi-modal skill representation and transfer.",
       "tags": ["One-shot Learning", "Imitation Learning", "Multi-modal Learning", "Non-stationary Environments", "Skill Transfer"],
-      "citations": 0,
-      "related_project": "Adaptive Personality for Intelligent Agents"
+      "arxiv": "https://arxiv.org/abs/2402.08369",
+      "pdf": "https://proceedings.mlr.press/v202/shin23d/shin23d.pdf",
+      "citations": 0
     },
     {
       "id": 2,
@@ -26,11 +27,11 @@
       "arxiv": "https://arxiv.org/abs/2410.22658",
       "pdf": "https://proceedings.neurips.cc/paper_files/paper/2024/file/1f0832859514e53a0e4f229fc9b3a4a2-Paper-Conference.pdf",
       "code": "https://github.com/L2dulgi/IsCiL",
-      "citations": 0,
-      "related_project": "Self-directed Multimodal Intelligence for Solving Unknown, Open-Domain Problems"
+      "openreview": "https://openreview.net/forum?id=RcPAJAnpnm&referrer=%5Bthe%20profile%20of%20Daehee%20Lee%5D(%2Fprofile%3Fid%3D~Daehee_Lee1)",
+      "citations": 0
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "NeSyC: A Neuro-symbolic Continual Learner For Complex Embodied Tasks In Open Domains",
       "authors": ["Wonje Choi", "Jiwon Park", "Seungwon Ahn", "Daehee Lee", "Honguk Woo"],
       "venue": "ICLR 2025",
@@ -39,16 +40,17 @@
       "status": "accepted",
       "abstract": "We present NeSyC, a neuro-symbolic continual learner that emulates the hypothetico-deductive model by continually formulating and validating knowledge from limited experiences through the combined use of LLMs. NeSyC enables embodied agents to tackle complex tasks more effectively in open-domain environments.",
       "tags": ["Neuro-symbolic Learning", "Continual Learning", "Embodied AI", "Open-domain Tasks"],
+      "arxiv": "https://arxiv.org/abs/2503.00870",
+      "pdf": "https://openreview.net/pdf?id=VoayJihXra",
       "openreview": "https://openreview.net/forum?id=VoayJihXra",
-      "citations": 0,
-      "related_project": "Self-directed Multimodal Intelligence for Solving Unknown, Open-Domain Problems"
+      "citations": 0
     }
   ],
   "statistics": {
-    "total_papers": 6,
-    "conference_papers": 2,
+    "total_papers": 3,
+    "conference_papers": 3,
     "journal_papers": 0,
-    "preprints": 4,
+    "preprints": 0,
     "total_citations": 0,
     "h_index": 0,
     "years_active": [2023, 2024, 2025]

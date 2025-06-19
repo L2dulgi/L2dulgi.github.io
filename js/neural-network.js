@@ -89,7 +89,7 @@ class NeuralNetworkVisualization {
         
         // Draw connections
         this.connections.forEach(conn => {
-            const opacity = 0.5 + conn.signal * 0.15;
+            const opacity = 0.05 + conn.signal * 0.15;
             const color = `rgba(0, 102, 204, ${opacity})`;
             
             this.ctx.beginPath();

@@ -172,11 +172,18 @@ h1, h2, h3, h4, h5, h6 {
     animation: fadeInUp 0.8s ease 0.2s both;
 }
 
+.hero-actions-social {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease 0.3s both;
+    flex-wrap: wrap;
+}
+
 .hero-actions {
     display: flex;
     gap: 1rem;
-    margin-bottom: 3rem;
-    animation: fadeInUp 0.8s ease 0.3s both;
     flex-wrap: wrap;
 }
 
@@ -253,6 +260,35 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-light);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+.hero-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-social .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.hero-social .social-link:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.3);
 }
 
 .hero-visual {

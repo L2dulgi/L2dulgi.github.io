@@ -5,7 +5,6 @@ class DataLoader {
             personal: null,
             education: null,
             research: null,
-            projects: null,
             publications: null,
             awards: null,
             skills: null,
@@ -15,7 +14,7 @@ class DataLoader {
 
     async loadAllData() {
         try {
-            const files = ['personal', 'education', 'research', 'projects', 'publications', 'awards', 'skills', 'config'];
+            const files = ['personal', 'education', 'research', 'publications', 'awards', 'skills', 'config'];
             
             for (const file of files) {
                 const response = await fetch(`data/${file}.json`);
@@ -76,6 +75,9 @@ class DataLoader {
         
         // Calculate and update stats
         this.updateHeroStats();
+        
+        // Update social links
+        this.updateHeroSocialLinks();
     }
 
     updateHeroActions() {
@@ -131,7 +133,7 @@ class DataLoader {
     }
 
     updateHeroStats() {
-        if (!this.data.projects || !this.data.education || !this.data.config) return;
+        if (!this.data.education || !this.data.config) return;
 
         const heroStats = document.getElementById('hero-stats');
         if (!heroStats) return;
@@ -139,11 +141,7 @@ class DataLoader {
         heroStats.innerHTML = '';
         
         // Calculate stats
-        const stats = {
-            projects_count: this.data.projects.projects.length,
-            years_experience: this.calculateYearsExperience(),
-            universities_count: [...new Set(this.data.education.degrees.map(d => d.institution))].length
-        };
+        const stats = {};
         
         // Add publications count if available
         if (this.data.publications) {
@@ -185,6 +183,34 @@ class DataLoader {
                 element.textContent = Math.floor(current);
             }
         }, 50);
+    }
+
+    updateHeroSocialLinks() {
+        if (!this.data.personal || !this.data.config) return;
+        
+        const heroSocial = document.getElementById('hero-social');
+        if (!heroSocial) return;
+        
+        heroSocial.innerHTML = '';
+        
+        this.data.config.site.hero.social_links.forEach(socialConfig => {
+            const link = document.createElement('a');
+            link.className = 'social-link';
+            link.title = socialConfig.title;
+            link.target = '_blank';
+            
+            // Set href based on source
+            if (socialConfig.href_source === 'googleScholar') {
+                link.href = this.data.personal.social.googleScholar;
+            } else if (socialConfig.href_source === 'linkedin') {
+                link.href = this.data.personal.social.linkedin;
+            } else if (socialConfig.href_source === 'email') {
+                link.href = `mailto:${this.data.personal.contact.email}`;
+            }
+            
+            link.innerHTML = `<i class="${socialConfig.icon}"></i>`;
+            heroSocial.appendChild(link);
+        });
     }
 
     updateSectionTitles() {
@@ -268,14 +294,14 @@ class DataLoader {
     }
 
     updateAffiliationsSection() {
-        if (!this.data.education || !this.data.projects) return;
+        if (!this.data.education) return;
 
         const affiliationsList = document.getElementById('affiliations-list');
         if (!affiliationsList) return;
 
         affiliationsList.innerHTML = '';
         
-        // Get current affiliations from education and projects
+        // Get current affiliations from education only
         const currentAffiliations = new Set();
         const pastAffiliations = new Set();
         
@@ -291,19 +317,6 @@ class DataLoader {
                 }
             } else if (degree.status === 'completed' && degree.degree === 'Visiting Scholar') {
                 pastAffiliations.add(`${degree.institution} (Visiting Scholar, ${degree.endDate})`);
-            }
-        });
-        
-        // Add current project institutions
-        this.data.projects.projects.forEach(project => {
-            if (project.status === 'ongoing') {
-                if (project.lab) {
-                    currentAffiliations.add(`${project.lab}, ${project.institution}`);
-                } else if (project.department) {
-                    currentAffiliations.add(`${project.department}, ${project.institution}`);
-                } else {
-                    currentAffiliations.add(project.institution);
-                }
             }
         });
         
@@ -384,83 +397,7 @@ class DataLoader {
         `;
     }
 
-    updateProjectsSection() {
-        if (!this.data.config) return;
-        
-        const filtersContainer = document.getElementById('research-filters');
-        if (!filtersContainer) return;
-        
-        filtersContainer.innerHTML = '';
-        
-        this.data.config.site.projects.filters.forEach(filter => {
-            const button = document.createElement('button');
-            button.className = `filter-btn ${filter.active ? 'active' : ''}`;
-            button.setAttribute('data-filter', filter.value);
-            button.textContent = filter.text;
-            filtersContainer.appendChild(button);
-        });
-    }
 
-    updateContactSection() {
-        if (!this.data.personal || !this.data.config) return;
-
-        const personal = this.data.personal;
-        const config = this.data.config.site.contact;
-        
-        // Update contact header and message
-        const contactHeader = document.getElementById('contact-header');
-        const contactMessage = document.getElementById('contact-message');
-        
-        if (contactHeader) contactHeader.textContent = config.header;
-        if (contactMessage) contactMessage.textContent = config.message;
-        
-        // Update contact details
-        const contactDetails = document.getElementById('contact-details');
-        if (contactDetails) {
-            contactDetails.innerHTML = `
-                <p><strong>Email:</strong> <a href="mailto:${personal.contact.email}">${personal.contact.email}</a></p>
-                <p><strong>Phone:</strong> ${personal.contact.phone}</p>
-                <p><strong>Location:</strong> ${personal.contact.currentLocation}</p>
-                <p><strong>Recent:</strong> Visiting Scholar at Carnegie Mellon University (2024-2025)</p>
-            `;
-        }
-        
-        // Update social links
-        const contactLinks = document.getElementById('contact-links');
-        if (contactLinks) {
-            contactLinks.innerHTML = '';
-            
-            if (personal.social.googleScholar) {
-                contactLinks.innerHTML += `
-                    <a href="${personal.social.googleScholar}" target="_blank" class="social-link" title="Google Scholar">
-                        <i class="fas fa-graduation-cap"></i>
-                    </a>
-                `;
-            }
-            
-            if (personal.social.linkedin) {
-                contactLinks.innerHTML += `
-                    <a href="${personal.social.linkedin}" target="_blank" class="social-link" title="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                `;
-            }
-            
-            if (personal.social.github) {
-                contactLinks.innerHTML += `
-                    <a href="${personal.social.github}" target="_blank" class="social-link" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                `;
-            }
-            
-            contactLinks.innerHTML += `
-                <a href="mailto:${personal.contact.email}" class="social-link" title="Email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            `;
-        }
-    }
 
     updateFooter() {
         if (!this.data.personal || !this.data.config) return;
@@ -489,8 +426,6 @@ class DataLoader {
             this.updateEducationSection();
             this.updateAffiliationsSection();
             this.updatePublicationsSection();
-            this.updateProjectsSection();
-            this.updateContactSection();
             this.updateFooter();
             
             console.log('All sections updated successfully');
