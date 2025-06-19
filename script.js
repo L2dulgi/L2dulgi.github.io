@@ -9,29 +9,35 @@ navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');
 });
 
-// Dark Mode Toggle
-const darkModeToggle = document.querySelector('#dark-mode-toggle');
-const darkModeIcon = darkModeToggle.querySelector('i');
-
-// Load theme from localStorage or default to light
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', savedTheme);
-updateDarkModeIcon(savedTheme);
-
-darkModeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+// Dark Mode Toggle - Initialize when DOM is ready
+function initDarkMode() {
+    const darkModeToggle = document.querySelector('#dark-mode-toggle');
+    if (!darkModeToggle) return;
     
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateDarkModeIcon(newTheme);
-});
+    const darkModeIcon = darkModeToggle.querySelector('i');
+    
+    // Load theme from localStorage or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateDarkModeIcon(savedTheme, darkModeIcon);
 
-function updateDarkModeIcon(theme) {
+    darkModeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateDarkModeIcon(newTheme, darkModeIcon);
+    });
+}
+
+function updateDarkModeIcon(theme, iconElement) {
+    if (!iconElement) return;
+    
     if (theme === 'dark') {
-        darkModeIcon.className = 'fas fa-sun';
+        iconElement.className = 'fas fa-sun';
     } else {
-        darkModeIcon.className = 'fas fa-moon';
+        iconElement.className = 'fas fa-moon';
     }
 }
 
@@ -92,6 +98,8 @@ const observer = new IntersectionObserver(function(entries) {
 
 // Wait for DOM to be fully loaded before observing sections
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize dark mode
+    initDarkMode();
     // Observe all sections
     document.querySelectorAll('section').forEach(section => {
         if (!section.classList.contains('hero')) { // Don't animate hero section
