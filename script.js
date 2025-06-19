@@ -17,7 +17,7 @@ function initDarkMode() {
     const darkModeIcon = darkModeToggle.querySelector('i');
     
     // Load theme from localStorage or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateDarkModeIcon(savedTheme, darkModeIcon);
 
