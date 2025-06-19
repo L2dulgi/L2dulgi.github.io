@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Typing animation for hero subtitle
 let heroSubtitle = null;
-let roles = ['Lifelong Learning Agents', 'Ph.D. Student @ SKKU', 'AI Researcher'];
+let roles = ['Lifelong Learning Agents', 'Ph.D. Student @ SKKU', 'AI/ML Researcher'];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
