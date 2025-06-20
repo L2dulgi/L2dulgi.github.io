@@ -1,7 +1,8 @@
 {
   "technical": {
-    "languages": ["Python", "PyTorch", "JavaScript", "C++", "Java"],
+    "languages": ["Python", "Java/TypeScript", "Java/Kotlin", "C++", "C#"],
     "frameworks": [
+      "JAX",
       "PyTorch",
       "TensorFlow", 
       "Keras",
