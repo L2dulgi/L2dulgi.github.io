@@ -89,14 +89,21 @@ class Publication {
                         <h4>BibTeX</h4>
                         <pre class="citation-text">${this.getBibtex()}</pre>
                         <button class="copy-btn" data-text="${this.escapeHtml(this.getBibtex())}">
-                            <i class="fas fa-copy"></i> Copy
+                            <i class="fas fa-copy"></i> Copy BibTeX
+                        </button>
+                    </div>
+                    <div class="format-section">
+                        <h4>MLA</h4>
+                        <pre class="citation-text">${this.getMLA()}</pre>
+                        <button class="copy-btn" data-text="${this.escapeHtml(this.getMLA())}">
+                            <i class="fas fa-copy"></i> Copy MLA
                         </button>
                     </div>
                     <div class="format-section">
                         <h4>APA</h4>
                         <pre class="citation-text">${this.getAPA()}</pre>
                         <button class="copy-btn" data-text="${this.escapeHtml(this.getAPA())}">
-                            <i class="fas fa-copy"></i> Copy
+                            <i class="fas fa-copy"></i> Copy APA
                         </button>
                     </div>
                 </div>
@@ -126,6 +133,12 @@ class Publication {
     }
 
     getBibtex() {
+        // Use the bibtex from the JSON data if available
+        if (this.data.bibtex) {
+            return this.data.bibtex;
+        }
+        
+        // Fallback to generated bibtex if not available in data
         const key = this.data.title.split(' ').slice(0, 2).join('').toLowerCase() + this.data.year;
         return `@${this.data.type}{${key},
   title={${this.data.title}},
@@ -135,9 +148,92 @@ class Publication {
 }`;
     }
 
+    getMLA() {
+        // Format: Author(s). "Title." Conference, Year, pages.
+        const authors = this.formatAuthorsForMLA();
+        const title = `"${this.data.title}."`;
+        const venue = this.data.venue.replace(/\d{4}/, '').trim(); // Remove year from venue
+        
+        let citation = `${authors} ${title} ${venue}, ${this.data.year}`;
+        
+        // Add page numbers if available (can be extracted from bibtex)
+        if (this.data.bibtex && this.data.bibtex.includes('pages=')) {
+            const pageMatch = this.data.bibtex.match(/pages={([^}]+)}/);
+            if (pageMatch) {
+                citation += `, pp. ${pageMatch[1]}`;
+            }
+        }
+        
+        citation += '.';
+        return citation;
+    }
+
     getAPA() {
-        const authorList = this.data.authors.join(', ');
-        return `${authorList} (${this.data.year}). ${this.data.title}. In ${this.data.venue}.`;
+        // Format: Author(s) (Year). Title. In Venue (pp. pages).
+        const authors = this.formatAuthorsForAPA();
+        const title = this.data.title;
+        const venue = this.data.venue.replace(/\d{4}/, '').trim(); // Remove year from venue
+        
+        let citation = `${authors} (${this.data.year}). ${title}. In ${venue}`;
+        
+        // Add page numbers if available
+        if (this.data.bibtex && this.data.bibtex.includes('pages=')) {
+            const pageMatch = this.data.bibtex.match(/pages={([^}]+)}/);
+            if (pageMatch) {
+                citation += ` (pp. ${pageMatch[1]})`;
+            }
+        }
+        
+        citation += '.';
+        return citation;
+    }
+
+    formatAuthorsForMLA() {
+        if (this.data.authors.length === 1) {
+            return this.reverseAuthorName(this.data.authors[0]);
+        } else if (this.data.authors.length === 2) {
+            return `${this.reverseAuthorName(this.data.authors[0])}, and ${this.data.authors[1]}`;
+        } else {
+            return `${this.reverseAuthorName(this.data.authors[0])}, et al.`;
+        }
+    }
+
+    formatAuthorsForAPA() {
+        if (this.data.authors.length === 1) {
+            return this.reverseAuthorName(this.data.authors[0]);
+        } else if (this.data.authors.length <= 6) {
+            const reversed = this.data.authors.map((author, index) => 
+                index === 0 ? this.reverseAuthorName(author) : this.abbreviateAuthorName(author)
+            );
+            if (reversed.length === 2) {
+                return `${reversed[0]}, & ${reversed[1]}`;
+            } else {
+                return reversed.slice(0, -1).join(', ') + `, & ${reversed[reversed.length - 1]}`;
+            }
+        } else {
+            const first = this.reverseAuthorName(this.data.authors[0]);
+            return `${first}, et al.`;
+        }
+    }
+
+    reverseAuthorName(name) {
+        const parts = name.trim().split(' ');
+        if (parts.length >= 2) {
+            const lastName = parts[parts.length - 1];
+            const firstNames = parts.slice(0, -1).join(' ');
+            return `${lastName}, ${firstNames}`;
+        }
+        return name;
+    }
+
+    abbreviateAuthorName(name) {
+        const parts = name.trim().split(' ');
+        if (parts.length >= 2) {
+            const lastName = parts[parts.length - 1];
+            const initials = parts.slice(0, -1).map(part => part.charAt(0) + '.').join(' ');
+            return `${initials} ${lastName}`;
+        }
+        return name;
     }
 
     escapeHtml(text) {
