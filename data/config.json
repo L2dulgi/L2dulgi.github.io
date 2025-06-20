@@ -3,6 +3,7 @@
     "title_template": "{name} - AI Research Portfolio",
     "sections": {
       "about": "About Me",
+      "skills": "Technical Skills",
       "publications": "Publications"
     },
     "hero": {

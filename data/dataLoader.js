@@ -238,8 +238,9 @@ class DataLoader {
         if (aboutShort) aboutShort.textContent = personal.about.short;
         if (aboutDetailed) aboutDetailed.textContent = personal.about.detailed;
         
-        // Update research interests
+        // Update research interests and skills
         this.updateResearchInterests();
+        this.updateSkillsSection();
     }
 
     updateResearchInterests() {
@@ -250,15 +251,94 @@ class DataLoader {
 
         interestsContainer.innerHTML = '';
         
-        // Combine research areas and keywords
-        const allInterests = [...this.data.research.areas, ...this.data.research.keywords];
+        // Create a simple flat list of all research interests
+        const allInterests = [
+            ...(this.data.research.primary || []),
+            ...(this.data.research.secondary || []),
+            ...(this.data.research.applications || [])
+        ];
         
+        // Create tags directly in the container (which already has interest-tags class)
         allInterests.forEach(interest => {
             const tag = document.createElement('span');
             tag.className = 'tag';
             tag.textContent = interest;
             interestsContainer.appendChild(tag);
         });
+    }
+
+    updateSkillsSection() {
+        if (!this.data.skills) return;
+
+        const skillsContainer = document.getElementById('skills-section');
+        if (!skillsContainer) return;
+
+        // Clear existing content
+        skillsContainer.innerHTML = '<h2 class="section-title" id="skills-section-title">Technical Skills</h2>';
+        
+        const skillsContent = document.createElement('div');
+        skillsContent.className = 'skills-content';
+        
+        // Technical Skills
+        if (this.data.skills.technical) {
+            const technicalDiv = document.createElement('div');
+            technicalDiv.className = 'skill-category';
+            
+            // Languages
+            if (this.data.skills.technical.languages && this.data.skills.technical.languages.length > 0) {
+                const langSection = document.createElement('div');
+                langSection.className = 'skill-group';
+                langSection.innerHTML = '<h4>Programming Languages</h4>';
+                const langTags = document.createElement('div');
+                langTags.className = 'skill-tags';
+                this.data.skills.technical.languages.forEach(lang => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag skill-tag';
+                    tag.textContent = lang;
+                    langTags.appendChild(tag);
+                });
+                langSection.appendChild(langTags);
+                technicalDiv.appendChild(langSection);
+            }
+            
+            // Frameworks
+            if (this.data.skills.technical.frameworks && this.data.skills.technical.frameworks.length > 0) {
+                const frameworkSection = document.createElement('div');
+                frameworkSection.className = 'skill-group';
+                frameworkSection.innerHTML = '<h4>Frameworks & Libraries</h4>';
+                const frameworkTags = document.createElement('div');
+                frameworkTags.className = 'skill-tags';
+                this.data.skills.technical.frameworks.forEach(framework => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag skill-tag';
+                    tag.textContent = framework;
+                    frameworkTags.appendChild(tag);
+                });
+                frameworkSection.appendChild(frameworkTags);
+                technicalDiv.appendChild(frameworkSection);
+            }
+            
+            // Tools
+            if (this.data.skills.technical.tools && this.data.skills.technical.tools.length > 0) {
+                const toolsSection = document.createElement('div');
+                toolsSection.className = 'skill-group';
+                toolsSection.innerHTML = '<h4>Tools & Technologies</h4>';
+                const toolsTags = document.createElement('div');
+                toolsTags.className = 'skill-tags';
+                this.data.skills.technical.tools.forEach(tool => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag skill-tag';
+                    tag.textContent = tool;
+                    toolsTags.appendChild(tag);
+                });
+                toolsSection.appendChild(toolsTags);
+                technicalDiv.appendChild(toolsSection);
+            }
+            
+            skillsContent.appendChild(technicalDiv);
+        }
+        
+        skillsContainer.appendChild(skillsContent);
     }
 
     updateEducationSection() {
@@ -427,6 +507,7 @@ class DataLoader {
             this.updateEducationSection();
             this.updateAffiliationsSection();
             this.updatePublicationsSection();
+            this.updateSkillsSection();
             this.updateFooter();
             
             console.log('All sections updated successfully');

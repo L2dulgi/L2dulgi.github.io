@@ -465,6 +465,42 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.75rem;
 }
 
+.interest-category {
+    margin-bottom: 0.5rem;
+}
+
+.interest-category h4 {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+}
+
+.primary-tag {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.primary-tag:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.application-tag {
+    background: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+}
+
+.application-tag:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
 .tag {
     background: var(--bg-color);
     color: var(--text-color);
@@ -697,6 +733,56 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-link:hover {
     color: var(--secondary-color);
+}
+
+/* Skills Section */
+.skills {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.skills-content {
+    margin-top: 3rem;
+}
+
+.skill-category {
+    margin-bottom: 3rem;
+}
+
+.skill-group {
+    margin-bottom: 2rem;
+}
+
+.skill-group h4 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.skill-tag {
+    background: var(--white);
+    color: var(--text-color);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.skill-tag:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Publications Section */

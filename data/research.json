@@ -1,22 +1,17 @@
 {
-  "areas": [
-    "Lifelong Learning Agent",
-    "Reinforcement Learning",
-    "Embodied Agent",
-    "Deep Learning",
-    "Large Scale Multimedia Analysis",
-    "Natural Language Processing",
-    "Multi-modal Intelligence",
+  "primary": [
     "Continual Learning",
+    "Reinforcement Learning",
+    "Embodied AI Agents"
+  ],
+  "secondary": [
+    "Multi-modal Learning",
+    "Imitation Learning",
     "Meta-Learning"
   ],
-  "keywords": [
-    "AI Agents",
+  "applications": [
     "Robotics",
-    "Edge Computing",
-    "Federated Learning",
-    "Imitation Learning",
     "Skill Transfer",
-    "Adaptive Intelligence"
+    "Lifelong Learning Systems"
   ]
 }
