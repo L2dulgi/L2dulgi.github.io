@@ -396,7 +396,7 @@ h1, h2, h3, h4, h5, h6 {
     height: calc(100% + 200px);
     opacity: 0.4;
     z-index: 1;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 #neuralCanvas {
